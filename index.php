@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Christopher & Regine — Our Wedding</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Raleway:wght@200;300;400;500&display=swap" rel="stylesheet"/>
+<style>
+/* ════════════════════════════════════════
+   RESET & ROOT
+   ════════════════════════════════════════ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --cream:      #faf7f4;
+  --cream-dark: #ede8e2;
+  --gold:       #c9a96e;
+  --gold-light: #dcc9a0;
+  --gold-dim:   rgba(201,169,110,.18);
+  --ink:        #2c2420;
+  --ink-soft:   #6b5e56;
+  --blush:      #c9a9a0;
+  --sage:       #8fa88a;
+  --white:      #ffffff;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Raleway', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ════════════════════════════════════════
+   NAV
+   ════════════════════════════════════════ */
+nav {
+  position: fixed; top:0; left:0; width:100%; z-index:100;
+  padding: 18px 40px;
+  display: flex; align-items:center; justify-content:space-between;
+  transition: background .35s, padding .35s, box-shadow .35s;
+}
+nav.scrolled {
+  background: rgba(250,247,244,.92);
+  backdrop-filter: blur(10px);
+  padding: 10px 40px;
+  box-shadow: 0 1px 12px rgba(44,36,32,.07);
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: var(--ink);
+  text-decoration:none;
+  letter-spacing: .5px;
+}
+.nav-logo em { color: var(--gold); font-style:italic; }
+.nav-links { display:flex; gap:32px; list-style:none; }
+.nav-links a {
+  font-size:11px; letter-spacing:2.8px; text-transform:uppercase;
+  color: var(--ink-soft); text-decoration:none; font-weight:400;
+  position:relative; padding-bottom:4px;
+  transition: color .25s;
+}
+.nav-links a::after {
+  content:''; position:absolute; bottom:0; left:50%; transform:translateX(-50%);
+  width:0; height:1px; background:var(--gold); transition: width .3s;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover::after { width:100%; }
+
+/* mobile nav toggle */
+.nav-toggle { display:none; flex-direction:column; gap:5px; cursor:pointer; }
+.nav-toggle span { width:24px; height:1.5px; background:var(--ink); transition:.25s; }
+
+/* ════════════════════════════════════════
+   HERO
+   ════════════════════════════════════════ */
+.hero {
+  position:relative; height:100vh; min-height:580px;
+  display:flex; align-items:center; justify-content:center;
+  background: linear-gradient(160deg, #e8ddd4 0%, #ddd0c5 40%, #cfc3b8 100%);
+  overflow:hidden;
+}
+/* large decorative circles */
+.hero__circle {
+  position:absolute; border-radius:50%;
+  border:1px solid var(--gold-dim);
+  pointer-events:none;
+}
+.hero__circle--1 { width:520px; height:520px; top:-140px; right:-180px; }
+.hero__circle--2 { width:300px; height:300px; bottom:-80px; left:-100px; border-color:rgba(201,169,110,.1); }
+.hero__circle--3 { width:160px; height:160px; top:18%; left:12%; border-color:rgba(201,169,110,.12); }
+
+.hero__content {
+  position:relative; z-index:2;
+  text-align:center;
+  animation: heroFade .9s cubic-bezier(.22,.61,.36,1) both;
+}
+@keyframes heroFade {
+  from { opacity:0; transform:translateY(30px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.hero__pre {
+  font-size:10px; letter-spacing:5px; text-transform:uppercase;
+  color:var(--ink-soft); margin-bottom:20px; font-weight:300;
+}
+.hero__names {
+  font-family:'Playfair Display',serif; font-weight:400;
+  font-size: clamp(42px, 9vw, 80px); line-height:1.1; color:var(--ink);
+}
+.hero__names .amp { color:var(--gold); font-style:italic; margin:0 8px; }
+.hero__date {
+  margin-top:22px; font-size:12px; letter-spacing:4px; text-transform:uppercase;
+  color:var(--ink-soft); font-weight:300;
+}
+.hero__divider {
+  width:60px; height:1px; background:var(--gold); margin:24px auto;
+}
+.hero__scroll-hint {
+  position:absolute; bottom:36px; left:50%; transform:translateX(-50%);
+  z-index:2; display:flex; flex-direction:column; align-items:center; gap:6px;
+}
+.hero__scroll-hint span {
+  font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--ink-soft);
+}
+.hero__scroll-hint .arrow {
+  width:16px; height:16px; border-right:1px solid var(--gold);
+  border-bottom:1px solid var(--gold);
+  transform:rotate(45deg);
+  animation: bounce 2s infinite;
+}
+@keyframes bounce {
+  0%,100% { transform:rotate(45deg) translateY(0); opacity:1; }
+  50%     { transform:rotate(45deg) translateY(6px); opacity:.5; }
+}
+
+/* ════════════════════════════════════════
+   SHARED SECTION STYLES
+   ════════════════════════════════════════ */
+section { padding: 100px 24px; }
+.section-inner { max-width:780px; margin:0 auto; }
+.section-label {
+  text-align:center; font-size:10px; letter-spacing:4.5px;
+  text-transform:uppercase; color:var(--gold); font-weight:400; margin-bottom:14px;
+}
+.section-title {
+  text-align:center; font-family:'Playfair Display',serif;
+  font-weight:400; font-size: clamp(26px,4.5vw,38px); color:var(--ink);
+  margin-bottom:12px;
+}
+.section-title em { font-style:italic; color:var(--gold); }
+
+/* gold ornament line */
+.ornament {
+  display:flex; align-items:center; justify-content:center; gap:10px; margin: 28px auto;
+}
+.ornament__line { width:40px; height:1px; background:var(--gold); opacity:.5; }
+.ornament__dot { width:5px; height:5px; border:1px solid var(--gold); transform:rotate(45deg); }
+
+/* reveal animation (JS adds .visible) */
+.reveal { opacity:0; transform:translateY(24px); transition: opacity .7s .1s, transform .7s .1s cubic-bezier(.22,.61,.36,1); }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* ════════════════════════════════════════
+   OUR STORY
+   ════════════════════════════════════════ */
+#story { background:var(--cream); }
+.story-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;
+  margin-top:48px;
+}
+.story-img-wrap {
+  position:relative; padding:20px;
+}
+.story-img-wrap::before {
+  content:''; position:absolute; inset:0;
+  border:1px solid var(--gold-dim); border-radius:3px;
+  top:12px; left:12px; right:-12px; bottom:-12px;
+}
+.story-img-box {
+  position:relative; width:100%; aspect-ratio:3/4; border-radius:3px; overflow:hidden;
+  background:#d9ccc3; /* fallback while image loads */
+}
+.story-img-box img {
+  width:100%; height:100%; object-fit:cover; border-radius:3px;
+  display:block;
+  transition: transform .55s cubic-bezier(.22,.61,.36,1);
+}
+.story-img-box:hover img { transform:scale(1.04); }
+.story-img-box .img-label {
+  position:absolute; bottom:0; left:0; right:0; z-index:2;
+  padding:40px 16px 18px;
+  background:linear-gradient(180deg, transparent, rgba(44,36,32,.45));
+  text-align:center; font-family:'Playfair Display',serif;
+  font-style:italic; font-size:15px; color:#fff;
+}
+.story-text p {
+  font-size:16px; line-height:1.85; color:var(--ink-soft); font-weight:300;
+  margin-bottom:18px;
+}
+.story-text .highlight { color:var(--ink); font-weight:400; }
+
+/* ════════════════════════════════════════
+   TIMELINE
+   ════════════════════════════════════════ */
+#timeline { background:var(--cream-dark); }
+.timeline {
+  position:relative; max-width:560px; margin:48px auto 0; padding:20px 0;
+}
+.timeline::before {
+  content:''; position:absolute; left:50%; transform:translateX(-50%);
+  top:0; bottom:0; width:1px; background: linear-gradient(180deg, transparent, var(--gold), transparent);
+}
+.timeline-item {
+  display:flex; align-items:flex-start; margin-bottom:44px; position:relative;
+}
+.timeline-item:nth-child(odd) { flex-direction:row-reverse; }
+.timeline-item:nth-child(odd) .tl-content { text-align:right; padding:0 36px 0 0; }
+.timeline-item:nth-child(even) .tl-content { text-align:left;  padding:0 0 0 36px; }
+.tl-content { flex:1; }
+.tl-dot {
+  position:absolute; left:50%; transform:translateX(-50%);
+  width:14px; height:14px; border-radius:50%;
+  background:var(--cream-dark); border:2px solid var(--gold);
+  top:6px; z-index:2;
+}
+.tl-time {
+  font-size:10px; letter-spacing:3px; text-transform:uppercase;
+  color:var(--gold); font-weight:400; margin-bottom:4px;
+}
+.tl-label {
+  font-family:'Playfair Display',serif; font-size:19px;
+  color:var(--ink); margin-bottom:4px;
+}
+.tl-desc { font-size:14px; color:var(--ink-soft); font-weight:300; line-height:1.6; }
+
+/* ════════════════════════════════════════
+   VENUE
+   ════════════════════════════════════════ */
+#venue { background:var(--cream); }
+
+.venue-block-wrap {
+  display:flex; flex-direction:column; gap:64px; margin-top:48px;
+}
+
+/* each ceremony / reception block */
+.venue-block {
+  display:grid; grid-template-columns:1fr 1fr; gap:32px;
+  align-items:start;
+}
+.venue-block:nth-child(even) { direction:rtl; }
+.venue-block:nth-child(even) > * { direction:ltr; }
+
+/* ── Left col: image + label ── */
+.vb-image-wrap {
+  position:relative; border-radius:4px; overflow:hidden;
+  border:1px solid var(--gold-dim);
+}
+.vb-image-wrap img,
+.vb-image-wrap .vb-img-placeholder {
+  width:100%; aspect-ratio:4/3; object-fit:cover; display:block;
+}
+.vb-img-placeholder {
+  background:linear-gradient(145deg,#d9ccc3,#c5b5a8,#bfafa1);
+  position:relative;
+}
+.vb-img-placeholder::after {
+  content:''; position:absolute; inset:0;
+  background: repeating-linear-gradient(
+    -45deg, transparent, transparent 22px, rgba(201,169,110,.06) 22px, rgba(201,169,110,.06) 44px
+  );
+}
+.vb-img-placeholder .vb-placeholder-icon {
+  position:absolute; inset:0; z-index:2;
+  display:flex; align-items:center; justify-content:center;
+  font-size:38px; opacity:.5;
+}
+/* gold badge label */
+.vb-badge {
+  position:absolute; top:18px; left:18px; z-index:3;
+  background:rgba(44,36,32,.72); backdrop-filter:blur(6px);
+  padding:6px 16px; border-radius:20px;
+  font-family:'Raleway',sans-serif; font-size:10px;
+  letter-spacing:3px; text-transform:uppercase;
+  color:var(--gold-light); font-weight:300;
+}
+
+/* ── Right col: details ── */
+.vb-details { padding-top:8px; }
+.vb-details h3 {
+  font-family:'Playfair Display',serif; font-size:24px;
+  color:var(--ink); font-weight:400; margin-bottom:6px;
+}
+.vb-details .vb-sub {
+  font-size:11px; letter-spacing:2.5px; text-transform:uppercase;
+  color:var(--gold); font-weight:400; margin-bottom:18px;
+}
+
+/* address box */
+.vb-address {
+  display:flex; align-items:flex-start; gap:14px;
+  padding:16px 18px; border:1px solid var(--gold-dim);
+  border-radius:4px; background:rgba(255,255,255,.55);
+  margin-bottom:16px;
+}
+.vb-address .vb-addr-icon {
+  flex-shrink:0; width:34px; height:34px; border-radius:50%;
+  background:var(--gold-dim);
+  display:flex; align-items:center; justify-content:center;
+  font-size:16px; margin-top:1px;
+}
+.vb-address p {
+  font-size:14px; color:var(--ink-soft); line-height:1.7; font-weight:300;
+}
+.vb-address p strong { color:var(--ink); font-weight:400; }
+
+/* embedded google maps iframe */
+.vb-map {
+  width:100%; aspect-ratio:16/9; border-radius:4px;
+  border:1px solid var(--gold-dim); overflow:hidden;
+}
+.vb-map iframe {
+  width:100%; height:100%; border:0; display:block;
+}
+
+/* ── Responsive ── */
+@media (max-width:720px) {
+  .venue-block { grid-template-columns:1fr; }
+  .venue-block:nth-child(even) { direction:ltr; }
+}
+
+/* ════════════════════════════════════════
+   CAPTURED MOMENTS (GALLERY)
+   ════════════════════════════════════════ */
+#gallery { background:var(--cream-dark); overflow:hidden; }
+#gallery .section-inner { max-width:960px; }
+
+.gallery-grid {
+  display:grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: 100px;
+  gap:14px;
+  margin-top:48px;
+}
+
+/* each photo card */
+.g-card {
+  position:relative; border-radius:4px; overflow:hidden;
+  cursor:pointer;
+  border:1px solid var(--gold-dim);
+}
+.g-card img.g-img {
+  width:100%; height:100%; object-fit:cover; display:block;
+  transition: transform .55s cubic-bezier(.22,.61,.36,1);
+}
+.g-card:hover img.g-img { transform:scale(1.07); }
+
+/* overlay with caption on hover */
+.g-card .g-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(180deg, transparent 40%, rgba(44,36,32,.62) 100%);
+  display:flex; flex-direction:column; justify-content:flex-end;
+  padding:22px 18px 18px;
+  opacity:0; transition:opacity .35s;
+}
+.g-card:hover .g-overlay { opacity:1; }
+.g-overlay .g-caption {
+  font-family:'Playfair Display',serif; font-style:italic;
+  font-size:15px; color:#fff; line-height:1.4;
+}
+.g-overlay .g-date {
+  font-family:'Raleway',sans-serif; font-size:10px;
+  letter-spacing:2px; text-transform:uppercase;
+  color:var(--gold-light); margin-top:3px; font-weight:300;
+}
+
+/* ── Grid placement (asymmetric editorial layout) ── */
+.g-card--1 { grid-column:1 / 5;  grid-row:1 / 4; }   /* tall left */
+.g-card--2 { grid-column:5 / 9;  grid-row:1 / 3; }   /* wide top-mid */
+.g-card--3 { grid-column:9 / 13; grid-row:1 / 3; }   /* tall right */
+.g-card--4 { grid-column:5 / 7;  grid-row:3 / 5; }   /* small square */
+.g-card--5 { grid-column:7 / 9;  grid-row:3 / 5; }   /* small square */
+.g-card--6 { grid-column:9 / 13; grid-row:3 / 6; }   /* tall right-2 */
+.g-card--7 { grid-column:1 / 5;  grid-row:4 / 6; }   /* wide bottom-left */
+.g-card--8 { grid-column:5 / 9;  grid-row:5 / 7; }   /* wide bottom-mid */
+.g-card--9 { grid-column:1 / 5;  grid-row:6 / 8; }   /* tall bottom-left */
+
+/* ── Lightbox ── */
+.lightbox {
+  display:none; position:fixed; inset:0; z-index:900;
+  background:rgba(20,16,14,.88); backdrop-filter:blur(4px);
+  align-items:center; justify-content:center;
+  flex-direction:column; gap:18px;
+  cursor:pointer;
+}
+.lightbox.open { display:flex; animation:lbFade .25s ease; }
+@keyframes lbFade { from{opacity:0} to{opacity:1} }
+.lightbox .lb-img {
+  max-width:88vw; max-height:72vh;
+  border-radius:4px; object-fit:contain;
+  border:1px solid rgba(201,169,110,.25);
+  display:block;
+}
+.lightbox .lb-caption {
+  text-align:center; color:#fff;
+}
+.lightbox .lb-caption .g-caption { font-size:18px; }
+.lightbox .lb-caption .g-date { margin-top:4px; }
+.lightbox .lb-close {
+  position:absolute; top:28px; right:36px;
+  font-size:32px; color:rgba(255,255,255,.6);
+  cursor:pointer; line-height:1; font-family:sans-serif;
+  transition:color .2s;
+}
+.lightbox .lb-close:hover { color:#fff; }
+.lightbox .lb-nav {
+  position:absolute; top:50%; transform:translateY(-50%);
+  font-size:36px; color:rgba(255,255,255,.5);
+  cursor:pointer; user-select:none; font-family:sans-serif;
+  transition:color .2s; z-index:2;
+}
+.lightbox .lb-nav:hover { color:#fff; }
+.lightbox .lb-nav--prev { left:20px; }
+.lightbox .lb-nav--next { right:20px; }
+
+/* ── Responsive ── */
+@media (max-width:720px) {
+  .gallery-grid {
+    grid-template-columns:1fr 1fr;
+    grid-auto-rows:140px;
+  }
+  .g-card--1,.g-card--2,.g-card--3,.g-card--4,.g-card--5,
+  .g-card--6,.g-card--7,.g-card--8,.g-card--9 {
+    grid-column:auto; grid-row:auto;
+  }
+  .g-card--1,.g-card--3,.g-card--6,.g-card--9 { grid-column:span 1; grid-row:span 2; }
+  .g-card--2,.g-card--7,.g-card--8 { grid-column:span 2; }
+}
+@media (max-width:420px) {
+  .gallery-grid { grid-auto-rows:110px; gap:8px; }
+}
+
+/* ════════════════════════════════════════
+   GIFT REGISTRY (SIMPLE)
+   ════════════════════════════════════════ */
+#gifts { background:var(--cream); }
+
+.gifts-simple {
+  max-width:480px; margin:44px auto 0;
+  background:var(--white); border:1px solid var(--gold-dim); border-radius:4px;
+  padding:44px 36px; text-align:center;
+  box-shadow:0 4px 24px rgba(44,36,32,.06);
+}
+.gifts-simple p {
+  font-size:15px; color:var(--ink-soft); line-height:1.8; font-weight:300;
+  margin-bottom:24px;
+}
+.gifts-simple p em { color:var(--gold); font-style:italic; }
+
+.gift-qr {
+  margin:0 auto 24px; width:220px; height:220px;
+  border:1px solid var(--gold-dim); border-radius:4px;
+  background:linear-gradient(145deg,#f5f0eb,#ede8e2);
+  display:flex; align-items:center; justify-content:center;
+  position:relative; overflow:hidden;
+}
+.gift-qr img {
+  width:100%; height:100%; object-fit:contain; display:block;
+}
+/* placeholder icon */
+.gift-qr .qr-placeholder {
+  position:absolute; inset:0; display:flex;
+  flex-direction:column; align-items:center; justify-content:center;
+  font-size:42px; opacity:.3; gap:8px;
+}
+.gift-qr .qr-placeholder span {
+  font-size:13px; font-family:'Raleway',sans-serif;
+  letter-spacing:1px; color:var(--ink-soft);
+}
+
+.gift-note {
+  font-size:13px; color:var(--ink-soft); font-style:italic;
+  padding-top:20px; border-top:1px solid var(--gold-dim);
+  margin-top:24px; font-weight:300;
+}
+
+/* ════════════════════════════════════════
+   FAQ
+   ════════════════════════════════════════ */
+#faq { background:var(--cream-dark); }
+.faq-list { max-width:620px; margin:48px auto 0; }
+.faq-item {
+  border-bottom:1px solid rgba(44,36,32,.1);
+  padding:22px 0;
+}
+.faq-item button {
+  width:100%; background:none; border:none; cursor:pointer;
+  display:flex; justify-content:space-between; align-items:center;
+  text-align:left;
+}
+.faq-item .faq-q {
+  font-family:'Playfair Display',serif; font-size:17px;
+  color:var(--ink); font-weight:400;
+}
+.faq-item .faq-toggle {
+  font-size:22px; color:var(--gold); transition:transform .3s; line-height:1;
+}
+.faq-item.open .faq-toggle { transform:rotate(45deg); }
+.faq-item .faq-a {
+  max-height:0; overflow:hidden;
+  transition:max-height .4s cubic-bezier(.22,.61,.36,1), padding .3s;
+  font-size:15px; color:var(--ink-soft); line-height:1.75; font-weight:300;
+}
+.faq-item.open .faq-a { max-height:200px; padding-top:14px; }
+
+/* ════════════════════════════════════════
+   RSVP
+   ════════════════════════════════════════ */
+#rsvp {
+  background: linear-gradient(160deg, #e4dbd2, #d8ccc3);
+  position:relative;
+}
+/* subtle large circle bg */
+#rsvp::before {
+  content:''; position:absolute; width:500px; height:500px;
+  border-radius:50%; border:1px solid var(--gold-dim);
+  top:-200px; right:-160px; pointer-events:none;
+}
+
+.rsvp-card {
+  max-width:520px; margin:48px auto 0;
+  background:rgba(255,255,255,.75); backdrop-filter:blur(10px);
+  border:1px solid var(--gold-dim); border-radius:4px;
+  padding:52px 44px 46px; position:relative; z-index:2;
+  box-shadow:0 4px 30px rgba(44,36,32,.07);
+}
+/* form */
+.rsvp-card .fg { margin-bottom:20px; }
+.rsvp-card .fg label {
+  display:block; font-size:10px; letter-spacing:3px; text-transform:uppercase;
+  color:var(--ink-soft); margin-bottom:8px; font-weight:400;
+}
+.rsvp-card .fg input,
+.rsvp-card .fg select {
+  width:100%; padding:12px 16px;
+  background:rgba(255,255,255,.6); border:1px solid rgba(201,169,110,.28);
+  border-radius:3px; font-family:'Playfair Display',serif;
+  font-size:17px; color:var(--ink); outline:none;
+  transition: border-color .25s, box-shadow .25s;
+  -webkit-appearance:none; appearance:none;
+}
+.rsvp-card .fg input:focus,
+.rsvp-card .fg select:focus {
+  border-color:var(--gold); box-shadow:0 0 0 3px var(--gold-dim);
+}
+.rsvp-card .fg input::placeholder { color:#b0a49a; }
+
+/* select arrow */
+.sel-wrap { position:relative; }
+.sel-wrap::after {
+  content:''; position:absolute; right:16px; top:50%;
+  transform:translateY(-50%); width:10px; height:6px;
+  background:var(--gold); clip-path:polygon(0 0,100% 0,50% 100%);
+  pointer-events:none;
+}
+.sel-wrap select { padding-right:38px; cursor:pointer; }
+.sel-wrap select option { background:#fff; }
+
+/* qty */
+.qty-row { display:flex; align-items:center; gap:0; border:1px solid rgba(201,169,110,.28); border-radius:3px; overflow:hidden; width:fit-content; }
+.qty-row button {
+  background:rgba(255,255,255,.55); border:none; width:40px; height:44px;
+  font-size:22px; color:var(--gold); cursor:pointer;
+  font-family:'Playfair Display',serif; transition:background .2s;
+}
+.qty-row button:hover { background:rgba(201,169,110,.12); }
+.qty-row .qty-v {
+  width:40px; height:44px; display:flex; align-items:center; justify-content:center;
+  font-family:'Playfair Display',serif; font-size:19px; color:var(--ink);
+  background:rgba(255,255,255,.4);
+}
+
+/* meal pills */
+.meal-pills { display:flex; gap:10px; flex-wrap:wrap; }
+.meal-pill input[type="radio"] { display:none; }
+.meal-pill label {
+  display:block; padding:10px 20px; border:1px solid rgba(201,169,110,.25);
+  border-radius:24px; font-family:'Playfair Display',serif;
+  font-size:14px; color:var(--ink-soft); cursor:pointer;
+  transition:all .25s; background:rgba(255,255,255,.5);
+}
+.meal-pill input:checked + label {
+  background:var(--gold); color:#fff; border-color:var(--gold);
+}
+.meal-pill label:hover { border-color:var(--gold-light); }
+
+/* submit btn */
+.rsvp-btn {
+  display:block; width:100%; margin-top:30px; padding:15px;
+  background:linear-gradient(135deg, var(--gold), #b8955a);
+  border:none; border-radius:3px; color:#fff;
+  font-family:'Raleway',sans-serif; font-weight:300;
+  font-size:11px; letter-spacing:4.5px; text-transform:uppercase;
+  cursor:pointer; position:relative; overflow:hidden;
+  transition:opacity .25s, transform .15s;
+}
+.rsvp-btn::after {
+  content:''; position:absolute; top:-50%; left:-75%;
+  width:50%; height:200%;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent);
+  transform:skewX(-25deg); transition:left .55s;
+}
+.rsvp-btn:hover::after { left:125%; }
+.rsvp-btn:hover { opacity:.88; }
+.rsvp-btn:active { transform:scale(.98); }
+
+/* confirmation */
+.rsvp-confirm { display:none; text-align:center; }
+.rsvp-confirm.show { display:block; animation:fadeIn .5s ease; }
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+.confirm-check {
+  width:72px; height:72px; border-radius:50%;
+  border:2px solid var(--gold); margin:0 auto 24px;
+  display:flex; align-items:center; justify-content:center;
+}
+.confirm-check svg {
+  width:30px; height:30px; stroke:var(--gold); stroke-width:2.5;
+  fill:none; stroke-linecap:round; stroke-linejoin:round;
+  stroke-dasharray:50; stroke-dashoffset:50;
+  animation:draw .5s .15s cubic-bezier(.4,0,.2,1) forwards;
+}
+@keyframes draw { to { stroke-dashoffset:0; } }
+.rsvp-confirm h3 {
+  font-family:'Playfair Display',serif; font-size:28px; color:var(--ink); margin-bottom:10px;
+}
+.rsvp-confirm > p { font-size:16px; color:var(--ink-soft); line-height:1.7; max-width:340px; margin:0 auto; }
+.confirm-summary {
+  margin-top:22px; padding:18px 24px; border:1px solid var(--gold-dim);
+  border-radius:3px; background:rgba(201,169,110,.06); text-align:left;
+}
+.confirm-summary p { font-size:14px; color:var(--ink); margin:5px 0; }
+.confirm-summary .cs-label { color:var(--ink-soft); font-size:12px; font-weight:300; }
+.btn-edit {
+  margin-top:20px; background:none; border:none;
+  font-family:'Raleway',sans-serif; font-size:10px; letter-spacing:2.5px;
+  text-transform:uppercase; color:var(--gold); cursor:pointer;
+  border-bottom:1px solid rgba(201,169,110,.4); padding:4px 0;
+}
+
+/* ════════════════════════════════════════
+   FOOTER
+   ════════════════════════════════════════ */
+footer {
+  background:var(--ink); color:rgba(255,255,255,.45);
+  text-align:center; padding:48px 24px;
+}
+footer .foot-names {
+  font-family:'Playfair Display',serif; font-size:22px;
+  color:rgba(255,255,255,.8); margin-bottom:10px;
+}
+footer .foot-names em { color:var(--gold); font-style:italic; }
+footer p { font-size:13px; font-weight:300; line-height:1.8; }
+footer .foot-ornament {
+  width:36px; height:1px; background:var(--gold); margin:14px auto;
+}
+
+/* ════════════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════════════ */
+@media (max-width:720px) {
+  .story-grid { grid-template-columns:1fr; gap:32px; }
+  .venue-cards { grid-template-columns:1fr; }
+  .timeline::before { left:28px; }
+  .timeline-item, .timeline-item:nth-child(odd) { flex-direction:row; }
+  .timeline-item:nth-child(odd) .tl-content { text-align:left; padding:0 0 0 36px; }
+  .tl-dot { left:28px; }
+  .rsvp-card { padding:40px 26px 34px; }
+  .nav-links { display:none; }
+  .nav-toggle { display:flex; }
+}
+@media (max-width:420px) {
+  section { padding:72px 18px; }
+  .rsvp-card { padding:32px 20px 28px; }
+}
+
+/* mobile nav overlay */
+.nav-overlay {
+  display:none; position:fixed; inset:0; z-index:99;
+  background:rgba(250,247,244,.97); flex-direction:column;
+  align-items:center; justify-content:center; gap:28px;
+}
+.nav-overlay.open { display:flex; }
+.nav-overlay a {
+  font-size:13px; letter-spacing:3px; text-transform:uppercase;
+  color:var(--ink); text-decoration:none; font-weight:300;
+}
+.nav-overlay .close-btn {
+  position:absolute; top:22px; right:26px;
+  font-size:28px; color:var(--ink-soft); cursor:pointer; background:none; border:none;
+}
+
+/* ════════════════════════════════════════
+   ENVELOPE INTRO
+   ════════════════════════════════════════ */
+
+/* full-screen cover that sits on top of everything */
+#envelope-screen {
+  position:fixed; inset:0; z-index:9999;
+  background: linear-gradient(160deg, #e8ddd4 0%, #ddd0c5 50%, #cfc3b8 100%);
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  transition: opacity .6s ease, visibility .6s;
+}
+#envelope-screen.hide {
+  opacity:0; visibility:hidden; pointer-events:none;
+}
+
+/* floating particles */
+.env-particle {
+  position:absolute; border-radius:50%;
+  background:var(--gold); opacity:0;
+  animation: envFloat 6s ease-in-out infinite;
+  pointer-events:none;
+}
+.env-particle:nth-child(1) { width:6px;  height:6px;  top:12%; left:18%; animation-delay:0s;    opacity:.25; }
+.env-particle:nth-child(2) { width:4px;  height:4px;  top:22%; right:24%; animation-delay:.8s;  opacity:.18; }
+.env-particle:nth-child(3) { width:8px;  height:8px;  top:70%; left:28%; animation-delay:1.6s;  opacity:.2;  }
+.env-particle:nth-child(4) { width:5px;  height:5px;  bottom:18%; right:18%; animation-delay:2.4s; opacity:.22; }
+.env-particle:nth-child(5) { width:3px;  height:3px;  top:55%; left:10%; animation-delay:3.2s;  opacity:.15; }
+.env-particle:nth-child(6) { width:7px;  height:7px;  bottom:30%; left:60%; animation-delay:1.2s; opacity:.18; }
+@keyframes envFloat {
+  0%,100% { transform:translateY(0px) scale(1); opacity:.2; }
+  50%     { transform:translateY(-18px) scale(1.15); opacity:.4; }
+}
+
+/* ── Envelope wrapper ── */
+.env-wrap {
+  position:relative; width:320px; height:220px;
+  cursor:pointer;
+  perspective:1200px;
+}
+/* ── Envelope body (the back face / main shape) ── */
+.env-body {
+  position:absolute; inset:0;
+  background: linear-gradient(170deg, #fff8f0, #f0e6da);
+  border:1px solid rgba(201,169,110,.35);
+  border-radius:6px 6px 8px 8px;
+  box-shadow:
+    0 6px 28px rgba(44,36,32,.12),
+    0 2px 6px  rgba(44,36,32,.08),
+    inset 0 1px 0 rgba(255,255,255,.7);
+  overflow:hidden;
+}
+/* diamond pattern on envelope body */
+.env-body::before {
+  content:''; position:absolute; inset:0;
+  background:
+    repeating-linear-gradient(45deg, transparent, transparent 28px, rgba(201,169,110,.04) 28px, rgba(201,169,110,.04) 56px),
+    repeating-linear-gradient(-45deg, transparent, transparent 28px, rgba(201,169,110,.04) 28px, rgba(201,169,110,.04) 56px);
+}
+
+/* ── Flap (top triangle that opens) ── */
+.env-flap {
+  position:absolute; top:0; left:0; width:100%; height:50%;
+  transform-origin:top center;
+  transform: rotateX(0deg);
+  transition: transform .7s cubic-bezier(.4,0,.2,1);
+  z-index:3;
+  overflow:hidden;
+}
+/* flap shape via clip-path triangle */
+.env-flap .env-flap-face {
+  position:absolute; inset:0;
+  background: linear-gradient(175deg, #fff5ec, #efe3d5);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  border-radius:6px 6px 0 0;
+  box-shadow: inset 0 -2px 4px rgba(44,36,32,.06);
+}
+/* gold seal on the flap */
+.env-seal {
+  position:absolute; width:42px; height:42px;
+  border-radius:50%;
+  background: radial-gradient(circle, #dcc9a0 0%, var(--gold) 60%, #b8955a 100%);
+  border:2px solid rgba(255,255,255,.45);
+  box-shadow: 0 2px 8px rgba(44,36,32,.2);
+  top:38%; left:50%; transform:translateX(-50%);
+  z-index:4;
+  display:flex; align-items:center; justify-content:center;
+  transition: transform .35s, opacity .35s;
+}
+.env-seal svg { width:18px; height:18px; }
+/* seal cracks open */
+.env-wrap.open .env-seal {
+  transform:translateX(-50%) scale(0.7);
+  opacity:0;
+}
+
+/* flap opens */
+.env-wrap.open .env-flap {
+  transform: rotateX(-180deg);
+}
+
+/* ── Card peeking out ── */
+.env-card {
+  position:absolute;
+  top:14px; left:16px; right:16px; bottom:10px;
+  background: linear-gradient(175deg, #fffdf9, #f9f2eb);
+  border:1px solid rgba(201,169,110,.22);
+  border-radius:3px;
+  box-shadow: 0 1px 6px rgba(44,36,32,.1);
+  z-index:2;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  text-align:center; padding:16px;
+  /* starts hidden, slides up after flap opens */
+  transform:translateY(18px);
+  opacity:0;
+  transition: transform .5s .45s cubic-bezier(.22,.61,.36,1),
+              opacity   .5s .45s ease;
+}
+.env-wrap.open .env-card {
+  transform:translateY(-28px);
+  opacity:1;
+}
+.env-card .ec-pre {
+  font-size:9px; letter-spacing:3.5px; text-transform:uppercase;
+  color:var(--ink-soft); font-weight:300; margin-bottom:6px;
+}
+.env-card .ec-names {
+  font-family:'Playfair Display',serif; font-size:18px;
+  color:var(--ink); line-height:1.2;
+}
+.env-card .ec-names em { color:var(--gold); font-style:italic; }
+.env-card .ec-line {
+  width:28px; height:1px; background:var(--gold); margin:6px auto;
+}
+.env-card .ec-date {
+  font-size:10px; letter-spacing:2px; text-transform:uppercase;
+  color:var(--ink-soft); font-weight:300;
+}
+
+/* ── Bottom flaps (two side triangles fold down) ── */
+.env-flap-left, .env-flap-right {
+  position:absolute; bottom:0; width:50%; height:60%;
+  z-index:1; pointer-events:none;
+  transition: transform .5s .2s cubic-bezier(.4,0,.2,1);
+}
+.env-flap-left {
+  left:0; transform-origin:bottom left;
+  background: linear-gradient(135deg, #f5ebe0, #efe3d5);
+  clip-path: polygon(0 100%, 100% 100%, 0 0);
+}
+.env-flap-right {
+  right:0; transform-origin:bottom right;
+  background: linear-gradient(225deg, #f5ebe0, #efe3d5);
+  clip-path: polygon(0 100%, 100% 100%, 100% 0);
+}
+.env-flap-bottom {
+  position:absolute; bottom:0; left:0; width:100%; height:50%;
+  z-index:0;
+  background: linear-gradient(180deg, #efe3d5, #e8dbd0);
+  clip-path: polygon(0 100%, 100% 100%, 50% 0);
+}
+
+/* ── Outer decorative circles ── */
+.env-screen-circle {
+  position:absolute; border-radius:50%;
+  border:1px solid var(--gold-dim); pointer-events:none;
+}
+.env-screen-circle--1 { width:380px; height:380px; top:-100px; right:-120px; }
+.env-screen-circle--2 { width:200px; height:200px; bottom:-60px; left:-70px; border-color:rgba(201,169,110,.1); }
+
+/* ── "Open" hint text below envelope ── */
+.env-hint {
+  margin-top:44px; text-align:center;
+  animation: hintPulse 2.2s ease-in-out infinite;
+}
+.env-hint p {
+  font-size:11px; letter-spacing:3.5px; text-transform:uppercase;
+  color:var(--ink-soft); font-weight:300;
+}
+.env-hint .hint-arrow {
+  width:14px; height:14px; margin:8px auto 0;
+  border-right:1px solid var(--gold); border-top:1px solid var(--gold);
+  transform:rotate(135deg);
+}
+@keyframes hintPulse {
+  0%,100% { opacity:1; }
+  50%     { opacity:.45; }
+}
+
+/* ── "Enter" button that appears after envelope opens ── */
+.env-enter-btn {
+  margin-top:36px;
+  padding:12px 36px;
+  background: linear-gradient(135deg, var(--gold), #b8955a);
+  border:none; border-radius:3px; color:#fff;
+  font-family:'Raleway',sans-serif; font-weight:300;
+  font-size:11px; letter-spacing:4px; text-transform:uppercase;
+  cursor:pointer; opacity:0; transform:translateY(10px);
+  transition: opacity .4s .9s, transform .4s .9s;
+  position:relative; overflow:hidden;
+}
+.env-enter-btn::after {
+  content:''; position:absolute; top:-50%; left:-75%;
+  width:50%; height:200%;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent);
+  transform:skewX(-25deg); transition:left .55s;
+}
+.env-enter-btn:hover::after { left:125%; }
+.env-wrap.open ~ .env-enter-btn {
+  opacity:1; transform:translateY(0);
+}
+/* hide hint once opened */
+.env-wrap.open ~ .env-hint { opacity:0; transition:opacity .25s; }
+
+/* hide the whole website beneath until dismissed */
+#site-content { visibility:hidden; }
+#site-content.show { visibility:visible; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     ENVELOPE INTRO SCREEN
+     ══════════════════════════════════════ -->
+<div id="envelope-screen">
+  <!-- ambient particles -->
+  <div class="env-particle"></div>
+  <div class="env-particle"></div>
+  <div class="env-particle"></div>
+  <div class="env-particle"></div>
+  <div class="env-particle"></div>
+  <div class="env-particle"></div>
+
+  <!-- background circles -->
+  <div class="env-screen-circle env-screen-circle--1"></div>
+  <div class="env-screen-circle env-screen-circle--2"></div>
+
+  <!-- envelope -->
+  <div class="env-wrap" id="envWrap" onclick="openEnvelope()">
+    <!-- back of envelope -->
+    <div class="env-body"></div>
+
+    <!-- bottom triangle -->
+    <div class="env-flap-bottom"></div>
+    <!-- side flaps -->
+    <div class="env-flap-left"></div>
+    <div class="env-flap-right"></div>
+
+    <!-- invitation card peeking inside -->
+    <div class="env-card">
+      <p class="ec-pre">You are invited</p>
+      <p class="ec-names">Christopher <em>&</em> Regine</p>
+      <div class="ec-line"></div>
+      <p class="ec-date">21 · 04 · 2026</p>
+    </div>
+
+    <!-- top flap that opens -->
+    <div class="env-flap">
+      <div class="env-flap-face"></div>
+    </div>
+
+    <!-- wax seal -->
+    <div class="env-seal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- hint -->
+  <div class="env-hint" id="envHint">
+    <p>Tap to open</p>
+    <div class="hint-arrow"></div>
+  </div>
+
+  <!-- enter button (appears after flap opens) -->
+  <button class="env-enter-btn" id="envEnterBtn" onclick="enterSite()">Open Invitation</button>
+</div>
+
+<!-- ══════════════════════════════════════
+     MAIN SITE (hidden until envelope dismissed)
+     ══════════════════════════════════════ -->
+<div id="site-content">
+
+<!-- ── NAV ── -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo"><em>C</em> & <em>R</em></a>
+  <ul class="nav-links">
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#timeline">The Day</a></li>
+    <li><a href="#venue">Venue</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#gifts">Gifts</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#rsvp">RSVP</a></li>
+  </ul>
+  <div class="nav-toggle" onclick="document.getElementById('mobileNav').classList.add('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- mobile nav -->
+<div class="nav-overlay" id="mobileNav">
+  <button class="close-btn" onclick="document.getElementById('mobileNav').classList.remove('open')">×</button>
+  <a href="#story"    onclick="document.getElementById('mobileNav').classList.remove('open')">Our Story</a>
+  <a href="#timeline" onclick="document.getElementById('mobileNav').classList.remove('open')">The Day</a>
+  <a href="#venue"    onclick="document.getElementById('mobileNav').classList.remove('open')">Venue</a>
+  <a href="#gallery"  onclick="document.getElementById('mobileNav').classList.remove('open')">Gallery</a>
+  <a href="#gifts"    onclick="document.getElementById('mobileNav').classList.remove('open')">Gifts</a>
+  <a href="#faq"      onclick="document.getElementById('mobileNav').classList.remove('open')">FAQ</a>
+  <a href="#rsvp"     onclick="document.getElementById('mobileNav').classList.remove('open')">RSVP</a>
+</div>
+
+<!-- ── HERO ── -->
+<section class="hero" id="home">
+  <div class="hero__circle hero__circle--1"></div>
+  <div class="hero__circle hero__circle--2"></div>
+  <div class="hero__circle hero__circle--3"></div>
+  <div class="hero__content">
+    <p class="hero__pre">Together with their families</p>
+    <h1 class="hero__names">Christopher <span class="amp">&</span> Regine</h1>
+    <p class="hero__date">Tuesday · The Twenty First of April · Two Thousand Twenty Six</p>
+    <div class="hero__divider"></div>
+    <p style="font-size:13px;color:var(--ink-soft);font-weight:300;letter-spacing:1px;">request the honour of your presence<br/>at their wedding celebration</p>
+  </div>
+  <div class="hero__scroll-hint">
+    <span>Scroll</span>
+    <div class="arrow"></div>
+  </div>
+</section>
+
+<!-- ── OUR STORY ── -->
+<section id="story">
+  <div class="section-inner">
+    <p class="section-label reveal">Our Story</p>
+    <h2 class="section-title reveal">How It All Began</h2>
+    <div class="ornament reveal"><span class="ornament__line"></span><span class="ornament__dot"></span><span class="ornament__line"></span></div>
+
+    <div class="story-grid">
+      <div class="story-img-wrap reveal">
+        <div class="story-img-box">
+          <img src="assets/Our Story.jpg" alt="Christopher and Regine — Summer 2022" />
+          <span class="img-label">Summer 2022</span>
+        </div>
+      </div>
+      <div class="story-text reveal">
+        <p>It started with a <span class="highlight">chance encounter</span> at a quiet bookshop in downtown Portland — the kind of place where time moves a little slower and conversations tend to linger.</p>
+        <p>Christopher reached for the same worn copy of <em>The Great Gatsby</em> at the exact same moment Regine did. What followed was a two-hour conversation over coffee that neither of us wanted to end.</p>
+        <p>Two years, countless adventures, and one very nervous proposal later — here we are, ready to begin the next chapter <span class="highlight">together</span>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TIMELINE (The Day) ── -->
+<section id="timeline">
+  <div class="section-inner">
+    <p class="section-label reveal">The Day</p>
+    <h2 class="section-title reveal">Celebrations <em>Ahead</em></h2>
+    <div class="ornament reveal"><span class="ornament__line"></span><span class="ornament__dot"></span><span class="ornament__line"></span></div>
+
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="tl-content">
+          <p class="tl-time">4:00 PM</p>
+          <p class="tl-label">Ceremony</p>
+          <p class="tl-desc">An intimate ceremony at the Kingdom Hall of Jehovah's Witnesses.</p>
+        </div>
+        <div class="tl-dot"></div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="tl-content">
+          <p class="tl-time">5:00 PM</p>
+          <p class="tl-label">Move to Reception</p>
+          <p class="tl-desc">Shuttle transfer to Caza Iyang Resort Hotel — drinks and refreshments await.</p>
+        </div>
+        <div class="tl-dot"></div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="tl-content">
+          <p class="tl-time">6:30 PM</p>
+          <p class="tl-label">Dinner & Toasts</p>
+          <p class="tl-desc">A seated dinner followed by heartfelt words from loved ones.</p>
+        </div>
+        <div class="tl-dot"></div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="tl-content">
+          <p class="tl-time">8:30 PM</p>
+          <p class="tl-label">First Dance & Celebration</p>
+          <p class="tl-desc">Dancing, laughter, and memories under the stars.</p>
+        </div>
+        <div class="tl-dot"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── VENUE ── -->
+<section id="venue">
+  <div class="section-inner">
+    <p class="section-label reveal">Where</p>
+    <h2 class="section-title reveal">Our <em>Venues</em></h2>
+    <div class="ornament reveal"><span class="ornament__line"></span><span class="ornament__dot"></span><span class="ornament__line"></span></div>
+
+    <div class="venue-block-wrap">
+
+      <!-- ── CEREMONY ── -->
+      <div class="venue-block reveal">
+        <div class="vb-image-wrap">
+          <span class="vb-badge">⛪ Ceremony</span>
+          <img src="assets/venue-ceremony.jpg" alt="Kingdom Hall" />
+        </div>
+        <div class="vb-details">
+          <p class="vb-sub">Ceremony</p>
+          <h3>Kingdom Hall of<br/>Jehovah's Witnesses</h3>
+          <div class="vb-address">
+            <div class="vb-addr-icon">📍</div>
+            <p><strong>Kingdom Hall of Jehovah's Witnesses</strong><br/>Lopez Jaena St, Molo<br/>Iloilo City, 5000 Iloilo, Philippines</p>
+          </div>
+          <div class="vb-map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3913.6527490352096!2d123.1107386784599!3d11.21330777558937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a8b3004fe9bbbd%3A0x799b8c853040377f!2sKINGDOM%20HALL%20OF%20JEHOVAH&#39;S%20WITNESSES!5e0!3m2!1sen!2sph!4v1770092395272!5m2!1sen!2sph" 
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── RECEPTION ── -->
+      <div class="venue-block reveal">
+        <div class="vb-image-wrap">
+          <span class="vb-badge">🎉 Reception</span>
+          <img src="assets/casa-hotel.jpg" alt="Caza Iyang Resort Hotel" />
+        </div>
+        <div class="vb-details">
+          <p class="vb-sub">Reception</p>
+          <h3>Caza Iyang<br/>Resort Hotel</h3>
+          <div class="vb-address">
+            <div class="vb-addr-icon">📍</div>
+            <p><strong>Caza Iyang Resort Hotel</strong><br/>D.B. Oñate St, Brgy. Poblacion<br/>Concepcion, Iloilo 5013, Philippines</p>
+          </div>
+          <div class="vb-map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3913.6046011539484!2d123.10356485065991!3d11.216862808048425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a8b398c3acd77b%3A0x535e18b156260572!2sCaza!5e0!3m2!1sen!2sph!4v1770092607017!5m2!1sen!2sph" 
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── GALLERY ── -->
+<section id="gallery">
+  <div class="section-inner">
+    <p class="section-label reveal">Moments</p>
+    <h2 class="section-title reveal">Captured <em>Moments</em></h2>
+    <div class="ornament reveal"><span class="ornament__line"></span><span class="ornament__dot"></span><span class="ornament__line"></span></div>
+    <p class="reveal" style="text-align:center;font-size:14px;color:var(--ink-soft);font-weight:300;max-width:480px;margin:0 auto;">A few of our favourite snapshots along the way — click any photo to take a closer look.</p>
+
+    <div class="gallery-grid">
+      <div class="g-card g-card--1 reveal" onclick="openLightbox(0)">
+        <img class="g-img" src="moments/photo-1.jpg" alt="The bookshop where it all started" />
+        <div class="g-overlay">
+          <span class="g-caption">The bookshop where it all started</span>
+          <span class="g-date">July 2022</span>
+        </div>
+      </div>
+      <div class="g-card g-card--2 reveal" onclick="openLightbox(1)">
+        <img class="g-img" src="moments/photo-2.jpg" alt="Sunset walk along the coast" />
+        <div class="g-overlay">
+          <span class="g-caption">Sunset walk along the coast</span>
+          <span class="g-date">September 2022</span>
+        </div>
+      </div>
+      <div class="g-card g-card--3 reveal" onclick="openLightbox(2)">
+        <img class="g-img" src="moments/photo-3.jpg" alt="Our first Christmas together" />
+        <div class="g-overlay">
+          <span class="g-caption">Our first Christmas together</span>
+          <span class="g-date">December 2022</span>
+        </div>
+      </div>
+      <div class="g-card g-card--4 reveal" onclick="openLightbox(3)">
+        <img class="g-img" src="moments/photo-4.jpg" alt="Morning coffee rituals" />
+        <div class="g-overlay">
+          <span class="g-caption">Morning coffee rituals</span>
+          <span class="g-date">March 2023</span>
+        </div>
+      </div>
+      <div class="g-card g-card--5 reveal" onclick="openLightbox(4)">
+        <img class="g-img" src="moments/photo-5.jpg" alt="Road trip to Big Sur" />
+        <div class="g-overlay">
+          <span class="g-caption">Road trip to Big Sur</span>
+          <span class="g-date">May 2023</span>
+        </div>
+      </div>
+      <div class="g-card g-card--6 reveal" onclick="openLightbox(5)">
+        <img class="g-img" src="moments/photo-6.jpg" alt="Dancing in the kitchen" />
+        <div class="g-overlay">
+          <span class="g-caption">Dancing in the kitchen</span>
+          <span class="g-date">August 2023</span>
+        </div>
+      </div>
+      <div class="g-card g-card--7 reveal" onclick="openLightbox(6)">
+        <img class="g-img" src="moments/photo-7.jpg" alt="The vineyard picnic" />
+        <div class="g-overlay">
+          <span class="g-caption">The vineyard picnic</span>
+          <span class="g-date">October 2023</span>
+        </div>
+      </div>
+      <div class="g-card g-card--8 reveal" onclick="openLightbox(7)">
+        <img class="g-img" src="moments/photo-8.jpg" alt="New Year's Eve, midnight kiss" />
+        <div class="g-overlay">
+          <span class="g-caption">New Year's Eve, midnight kiss</span>
+          <span class="g-date">December 2023</span>
+        </div>
+      </div>
+      <div class="g-card g-card--9 reveal" onclick="openLightbox(8)">
+        <img class="g-img" src="moments/photo-9.jpg" alt="The proposal" />
+        <div class="g-overlay">
+          <span class="g-caption">The proposal — he said yes first!</span>
+          <span class="g-date">February 2024</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── LIGHTBOX ── -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lb-close">&times;</span>
+  <span class="lb-nav lb-nav--prev" onclick="event.stopPropagation();lbNav(-1)">&#8249;</span>
+  <span class="lb-nav lb-nav--next" onclick="event.stopPropagation();lbNav(1)">&#8250;</span>
+  <img class="lb-img" id="lbImg" src="" alt="Captured moment" /><br/>
+  <div class="lb-caption">
+    <span class="g-caption" id="lbCaption"></span><br/>
+    <span class="g-date" id="lbDate"></span>
+  </div>
+</div>
+
+<!-- ── GIFT REGISTRY ── -->
+<section id="gifts">
+  <div class="section-inner">
+    <p class="section-label reveal">Gifts</p>
+    <h2 class="section-title reveal">Gift <em>Registry</em></h2>
+    <div class="ornament reveal"><span class="ornament__line"></span><span class="ornament__dot"></span><span class="ornament__line"></span></div>
+
+    <div class="gifts-simple reveal">
+      <p>Your presence at our wedding is the greatest gift we could ask for. However, if you wish to honor us with a gift, a <em>monetary contribution</em> toward our future together would be deeply appreciated.</p>
+      
+      <div class="gift-qr">
+        <img src="assets/gcash-qr.jpg" alt="GCash QR Code" />
+      </div>
+
+      <p style="margin-bottom:0;"><strong style="color:var(--ink);">Scan to send via GCash</strong></p>
+      
+      <p class="gift-note">Thank you for your love, support, and generosity as we begin this beautiful journey together.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section id="faq">
+  <div class="section-inner">
+    <p class="section-label reveal">Questions</p>
+    <h2 class="section-title reveal">Frequently <em>Asked</em></h2>
+    <div class="ornament reveal"><span class="ornament__line"></span><span class="ornament__dot"></span><span class="ornament__line"></span></div>
+
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button onclick="toggleFaq(this)">
+          <span class="faq-q">What is the dress code?</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-a">Black tie optional. We encourage elegant, garden-friendly attire. Please avoid wearing white or cream.</div>
+      </div>
+      <div class="faq-item reveal">
+        <button onclick="toggleFaq(this)">
+          <span class="faq-q">Can I bring a plus one?</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-a">Plus ones are welcome for those whose invitations included one. Please let us know via the RSVP form if you plan to bring a guest.</div>
+      </div>
+      <div class="faq-item reveal">
+        <button onclick="toggleFaq(this)">
+          <span class="faq-q">Are children welcome?</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-a">We love your little ones! A small children's menu will be available. We kindly ask that kids remain with a guardian during the ceremony.</div>
+      </div>
+      <div class="faq-item reveal">
+        <button onclick="toggleFaq(this)">
+          <span class="faq-q">Is there parking available?</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-a">Parking is available at both the Kingdom Hall and at Caza Iyang Resort Hotel. A shuttle will also run from the Kingdom Hall to the resort after the ceremony.</div>
+      </div>
+      <div class="faq-item reveal">
+        <button onclick="toggleFaq(this)">
+          <span class="faq-q">When is the RSVP deadline?</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-a">Please RSVP by April 7, 2026 so we can finalise seating and catering arrangements.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── RSVP ── -->
+<section id="rsvp">
+  <div class="section-inner">
+    <p class="section-label reveal">Join Us</p>
+    <h2 class="section-title reveal">RSVP</h2>
+    <div class="ornament reveal"><span class="ornament__line"></span><span class="ornament__dot"></span><span class="ornament__line"></span></div>
+
+    <div class="rsvp-card reveal">
+      <!-- FORM -->
+      <div id="rsvpForm">
+        <div class="fg">
+          <label>Full Name</label>
+          <input type="text" id="rName" placeholder="e.g. Sarah & Michael Chen"/>
+        </div>
+        <div class="fg">
+          <label>Email</label>
+          <input type="email" id="rEmail" placeholder="sarah@email.com"/>
+        </div>
+        <div class="fg">
+          <label>Attending?</label>
+          <div class="sel-wrap">
+            <select id="rAttend" onchange="handleAttend()">
+              <option value="" disabled selected>Please select…</option>
+              <option value="yes">Joyfully Accepts</option>
+              <option value="no">Regretfully Declines</option>
+            </select>
+          </div>
+        </div>
+        <div class="fg" id="guestQtyFg" style="display:none;">
+          <label>Number of Guests</label>
+          <div class="qty-row">
+            <button onclick="chgQty(-1)">−</button>
+            <span class="qty-v" id="qtyV">1</span>
+            <button onclick="chgQty(1)">+</button>
+          </div>
+        </div>
+        <div class="fg" id="mealFg" style="display:none;">
+          <label>Meal Preference</label>
+          <div class="meal-pills">
+            <div class="meal-pill"><input type="radio" name="meal" id="m1" value="chicken"/><label for="m1">🍗 Herb Roasted Chicken</label></div>
+            <div class="meal-pill"><input type="radio" name="meal" id="m2" value="salmon"/><label for="m2">🐟 Seared Salmon</label></div>
+            <div class="meal-pill"><input type="radio" name="meal" id="m3" value="veg"/><label for="m3">🥗 Vegetarian</label></div>
+          </div>
+        </div>
+        <div class="fg" id="dietFg" style="display:none;">
+          <label>Dietary Notes <em style="text-transform:none;letter-spacing:0;font-size:12px;color:var(--ink-soft)">(optional)</em></label>
+          <input type="text" id="rDiet" placeholder="Allergies or restrictions…"/>
+        </div>
+        <button class="rsvp-btn" onclick="submitRSVP()">Send My RSVP</button>
+      </div>
+
+      <!-- CONFIRMATION -->
+      <div class="rsvp-confirm" id="rsvpConfirm">
+        <div class="confirm-check">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3>Thank You!</h3>
+        <p>Your RSVP has been received. We are so excited to celebrate with you.</p>
+        <div class="confirm-summary" id="cSummary"></div>
+        <button class="btn-edit" onclick="resetRSVP()">Edit my RSVP</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p class="foot-names">Christopher <em>&</em> Regine</p>
+  <div class="foot-ornament"></div>
+  <p>21 April 2026 · Kingdom Hall & Caza Iyang Resort Hotel · Iloilo</p>
+  <p style="margin-top:10px;font-size:12px;">Questions? Email us at <a href="/cdn-cgi/l/email-protection#ea828f868685aa8b868f928b848e988b8b848e808b878f99c4898587" style="color:var(--gold);text-decoration:none;"><span class="__cf_email__" data-cfemail="274f424b4b4867464b425f46494355464649434d464a42540944484a">[email&#160;protected]</span></a></p>
+</footer>
+
+</div><!-- end #site-content -->
+
+<!-- ════════════════════════════════════════
+     JS
+     ════════════════════════════════════════ -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ── Envelope intro ──
+function openEnvelope() {
+  document.getElementById('envWrap').classList.add('open');
+}
+function enterSite() {
+  document.getElementById('envelope-screen').classList.add('hide');
+  document.getElementById('site-content').classList.add('show');
+}
+
+// ── Nav scroll effect ──
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ── Reveal on scroll ──
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15 });
+reveals.forEach(el => observer.observe(el));
+
+// ── FAQ toggle ──
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+// ── RSVP logic ──
+let qty = 1;
+function handleAttend() {
+  const yes = document.getElementById('rAttend').value === 'yes';
+  ['guestQtyFg','mealFg','dietFg'].forEach(id => {
+    document.getElementById(id).style.display = yes ? 'block' : 'none';
+  });
+}
+function chgQty(d) {
+  qty = Math.max(1, Math.min(8, qty + d));
+  document.getElementById('qtyV').textContent = qty;
+}
+function submitRSVP() {
+  const name  = document.getElementById('rName').value.trim();
+  const email = document.getElementById('rEmail').value.trim();
+  const att   = document.getElementById('rAttend').value;
+  if (!name)  { alert('Please enter your name.'); return; }
+  if (!email || !email.includes('@')) { alert('Please enter a valid email.'); return; }
+  if (!att)   { alert('Please choose whether you are attending.'); return; }
+
+  let meal = '';
+  if (att === 'yes') {
+    const mp = document.querySelector('input[name="meal"]:checked');
+    if (!mp) { alert('Please pick a meal.'); return; }
+    meal = mp.parentElement.querySelector('label').textContent.trim();
+  }
+  const diet = document.getElementById('rDiet').value.trim();
+
+  // summary
+  let html = `<p><span class="cs-label">Name:</span> ${esc(name)}</p>
+              <p><span class="cs-label">Status:</span> ${att==='yes'?'✓ Attending':'✗ Not Attending'}</p>
+              <p><span class="cs-label">Guests:</span> ${qty}</p>`;
+  if (att === 'yes') {
+    html += `<p><span class="cs-label">Meal:</span> ${esc(meal)}</p>`;
+    if (diet) html += `<p><span class="cs-label">Dietary:</span> ${esc(diet)}</p>`;
+  }
+  document.getElementById('cSummary').innerHTML = html;
+
+  document.getElementById('rsvpForm').style.display    = 'none';
+  document.getElementById('rsvpConfirm').classList.add('show');
+}
+function resetRSVP() {
+  document.getElementById('rName').value  = '';
+  document.getElementById('rEmail').value = '';
+  document.getElementById('rAttend').value = '';
+  document.getElementById('rDiet').value  = '';
+  document.querySelectorAll('input[name="meal"]').forEach(r => r.checked = false);
+  qty = 1; document.getElementById('qtyV').textContent = '1';
+  ['guestQtyFg','mealFg','dietFg'].forEach(id => document.getElementById(id).style.display = 'none');
+  document.getElementById('rsvpConfirm').classList.remove('show');
+  document.getElementById('rsvpForm').style.display = 'block';
+}
+function esc(s) {
+  const d = document.createElement('div');
+  d.appendChild(document.createTextNode(s));
+  return d.innerHTML;
+}
+// ── Lightbox ──
+const galleryData = [
+  { caption:"The bookshop where it all started",  date:"July 2022" },
+  { caption:"Sunset walk along the coast",        date:"September 2022" },
+  { caption:"Our first Christmas together",       date:"December 2022" },
+  { caption:"Morning coffee rituals",             date:"March 2023" },
+  { caption:"Road trip to Big Sur",               date:"May 2023" },
+  { caption:"Dancing in the kitchen",             date:"August 2023" },
+  { caption:"The vineyard picnic",                date:"October 2023" },
+  { caption:"New Year's Eve, midnight kiss",      date:"December 2023" },
+  { caption:"The proposal — he said yes first!",  date:"February 2024" }
+];
+const lbSrcs = [
+  'moments/photo-1.jpg',
+  'moments/photo-2.jpg',
+  'moments/photo-3.jpg',
+  'moments/photo-4.jpg',
+  'moments/photo-5.jpg',
+  'moments/photo-6.jpg',
+  'moments/photo-7.jpg',
+  'moments/photo-8.jpg',
+  'moments/photo-9.jpg'
+];
+let lbIdx = 0;
+function openLightbox(i) {
+  lbIdx = i;
+  const lb = document.getElementById('lightbox');
+  document.getElementById('lbImg').src = lbSrcs[i];
+  document.getElementById('lbCaption').textContent = galleryData[i].caption;
+  document.getElementById('lbDate').textContent    = galleryData[i].date;
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function lbNav(dir) {
+  lbIdx = (lbIdx + dir + galleryData.length) % galleryData.length;
+  document.getElementById('lbImg').src            = lbSrcs[lbIdx];
+  document.getElementById('lbCaption').textContent = galleryData[lbIdx].caption;
+  document.getElementById('lbDate').textContent    = galleryData[lbIdx].date;
+}
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'Escape')     closeLightbox();
+  if (e.key === 'ArrowLeft')  lbNav(-1);
+  if (e.key === 'ArrowRight') lbNav(1);
+});
+</script>
+</body>
+</html>
