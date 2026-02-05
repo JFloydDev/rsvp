@@ -2,10 +2,20 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="Christopher & Regine"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="theme-color" content="#faf7f4"/>
+<meta name="description" content="Christopher & Regine's Wedding - April 21, 2026 in Iloilo. View our story, event details, photo gallery, and RSVP. Ceremony at Kingdom Hall, reception at Caza Iyang Resort Hotel."/>
+<!-- iOS Safari PWA icons -->
+<link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%23c9a96e' width='180' height='180'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='80' fill='white'>C&amp;R</text></svg>"/>
+<link rel="icon" type="image/png" sizes="32x32" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect fill='%23c9a96e' width='32' height='32'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='14' fill='white'>C&amp;R</text></svg>"/>
 <title>Christopher & Regine — Our Wedding</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Raleway:wght@200;300;400;500&display=swap" rel="stylesheet"/>
 <style>
 /* ════════════════════════════════════════
@@ -34,10 +44,78 @@ html {
 body {
   background: var(--cream);
   color: var(--ink);
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  width: 100%;
+}
+
+/* ════════════════════════════════════════
+   MOBILE & TOUCH OPTIMIZATIONS
+   ════════════════════════════════════════ */
+/* Better tap highlight for touch devices */
+a, button, input, select, textarea {
+  -webkit-tap-highlight-color: rgba(201,169,110,.2);
+  touch-action: manipulation;
+}
+
+/* Remove iOS input shadows */
+input, select, textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0;
+}
+
+/* Fix iOS input zoom (16px minimum prevents zoom) */
+input, select, textarea {
+  font-size: 16px !important;
+}
+
+/* Better button/link touch targets (min 44x44px for accessibility) */
+button, a, .nav-links a, .nav-toggle {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Prevent horizontal overflow */
+body, html {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Fix for Safari mobile address bar */
+.hero {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+
+/* Smooth scrolling for iOS */
+html {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Better image rendering */
+img {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Fix sticky hover states on mobile */
+@media (hover: none) and (pointer: coarse) {
+  a:hover, button:hover, .g-card:hover, .story-img-box:hover {
+    /* Reset hover effects on touch devices */
+  }
 }
 
 /* ════════════════════════════════════════
@@ -51,8 +129,8 @@ nav {
 }
 nav.scrolled {
   background: rgba(250,247,244,.95);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: 10px 40px;
   box-shadow: 0 1px 12px rgba(44,36,32,.07);
 }
@@ -84,8 +162,9 @@ nav.scrolled {
   flex-direction:column; 
   gap:5px; 
   cursor:pointer;
+  background: none;
+  border: none;
   padding: 8px;
-  -webkit-tap-highlight-color: transparent;
 }
 .nav-toggle span { 
   width:24px; 
@@ -101,13 +180,11 @@ nav.scrolled {
 .hero {
   position:relative; 
   height:100vh; 
-  min-height:500px;
-  display:flex; 
-  align-items:center; 
-  justify-content:center;
+  height: -webkit-fill-available;
+  min-height:580px;
+  display:flex; align-items:center; justify-content:center;
   background: linear-gradient(160deg, #e8ddd4 0%, #ddd0c5 40%, #cfc3b8 100%);
   overflow:hidden;
-  padding: 20px;
 }
 /* large decorative circles */
 .hero__circle {
@@ -123,7 +200,7 @@ nav.scrolled {
   position:relative; z-index:2;
   text-align:center;
   animation: heroFade .9s cubic-bezier(.22,.61,.36,1) both;
-  max-width: 90%;
+  padding: 0 20px;
 }
 @keyframes heroFade {
   from { opacity:0; transform:translateY(30px); }
@@ -135,20 +212,12 @@ nav.scrolled {
 }
 .hero__names {
   font-family:'Playfair Display',serif; font-weight:400;
-  font-size: clamp(32px, 8vw, 80px); 
-  line-height:1.2; 
-  color:var(--ink);
-  word-wrap: break-word;
+  font-size: clamp(36px, 9vw, 80px); line-height:1.1; color:var(--ink);
 }
 .hero__names .amp { color:var(--gold); font-style:italic; margin:0 8px; }
 .hero__date {
-  margin-top:22px; 
-  font-size: clamp(10px, 2.5vw, 12px); 
-  letter-spacing:4px; 
-  text-transform:uppercase;
-  color:var(--ink-soft); 
-  font-weight:300;
-  line-height: 1.6;
+  margin-top:22px; font-size:clamp(10px, 2vw, 12px); letter-spacing:4px; text-transform:uppercase;
+  color:var(--ink-soft); font-weight:300;
 }
 .hero__divider {
   width:60px; height:1px; background:var(--gold); margin:24px auto;
@@ -174,7 +243,7 @@ nav.scrolled {
 /* ════════════════════════════════════════
    SHARED SECTION STYLES
    ════════════════════════════════════════ */
-section { padding: 80px 24px; }
+section { padding: 100px 24px; }
 .section-inner { max-width:780px; margin:0 auto; }
 .section-label {
   text-align:center; font-size:10px; letter-spacing:4.5px;
@@ -182,9 +251,8 @@ section { padding: 80px 24px; }
 }
 .section-title {
   text-align:center; font-family:'Playfair Display',serif;
-  font-weight:400; font-size: clamp(24px,4.5vw,38px); color:var(--ink);
+  font-weight:400; font-size: clamp(26px,4.5vw,38px); color:var(--ink);
   margin-bottom:12px;
-  line-height: 1.3;
 }
 .section-title em { font-style:italic; color:var(--gold); }
 
@@ -208,10 +276,7 @@ section { padding: 80px 24px; }
    ════════════════════════════════════════ */
 #story { background:var(--cream); }
 .story-grid {
-  display:grid; 
-  grid-template-columns:1fr 1fr; 
-  gap:56px; 
-  align-items:center;
+  display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;
   margin-top:48px;
 }
 .story-img-wrap {
@@ -231,7 +296,9 @@ section { padding: 80px 24px; }
   display:block;
   transition: transform .55s cubic-bezier(.22,.61,.36,1);
 }
-.story-img-box:hover img { transform:scale(1.04); }
+@media (hover: hover) and (pointer: fine) {
+  .story-img-box:hover img { transform:scale(1.04); }
+}
 .story-img-box .img-label {
   position:absolute; bottom:0; left:0; right:0; z-index:2;
   padding:40px 16px 18px;
@@ -288,7 +355,6 @@ section { padding: 80px 24px; }
   display:flex; flex-direction:column; gap:64px; margin-top:48px;
 }
 
-/* each ceremony / reception block */
 .venue-block {
   display:grid; grid-template-columns:1fr 1fr; gap:32px;
   align-items:start;
@@ -296,7 +362,6 @@ section { padding: 80px 24px; }
 .venue-block:nth-child(even) { direction:rtl; }
 .venue-block:nth-child(even) > * { direction:ltr; }
 
-/* ── Left col: image + label ── */
 .vb-image-wrap {
   position:relative; border-radius:4px; overflow:hidden;
   border:1px solid var(--gold-dim);
@@ -320,10 +385,10 @@ section { padding: 80px 24px; }
   display:flex; align-items:center; justify-content:center;
   font-size:38px; opacity:.5;
 }
-/* gold badge label */
 .vb-badge {
   position:absolute; top:18px; left:18px; z-index:3;
-  background:rgba(44,36,32,.72); backdrop-filter:blur(6px);
+  background:rgba(44,36,32,.72); 
+  backdrop-filter:blur(6px);
   -webkit-backdrop-filter:blur(6px);
   padding:6px 16px; border-radius:20px;
   font-family:'Raleway',sans-serif; font-size:10px;
@@ -331,20 +396,16 @@ section { padding: 80px 24px; }
   color:var(--gold-light); font-weight:300;
 }
 
-/* ── Right col: details ── */
 .vb-details { padding-top:8px; }
 .vb-details h3 {
-  font-family:'Playfair Display',serif; 
-  font-size: clamp(20px, 4vw, 24px);
+  font-family:'Playfair Display',serif; font-size:24px;
   color:var(--ink); font-weight:400; margin-bottom:6px;
-  line-height: 1.4;
 }
 .vb-details .vb-sub {
   font-size:11px; letter-spacing:2.5px; text-transform:uppercase;
   color:var(--gold); font-weight:400; margin-bottom:18px;
 }
 
-/* address box */
 .vb-address {
   display:flex; align-items:flex-start; gap:14px;
   padding:16px 18px; border:1px solid var(--gold-dim);
@@ -362,7 +423,6 @@ section { padding: 80px 24px; }
 }
 .vb-address p strong { color:var(--ink); font-weight:400; }
 
-/* embedded google maps iframe */
 .vb-map {
   width:100%; aspect-ratio:16/9; border-radius:4px;
   border:1px solid var(--gold-dim); overflow:hidden;
@@ -372,7 +432,7 @@ section { padding: 80px 24px; }
 }
 
 /* ════════════════════════════════════════
-   CAPTURED MOMENTS (GALLERY)
+   GALLERY
    ════════════════════════════════════════ */
 #gallery { background:var(--cream-dark); overflow:hidden; }
 #gallery .section-inner { max-width:960px; }
@@ -385,33 +445,26 @@ section { padding: 80px 24px; }
   margin-top:48px;
 }
 
-/* each photo card */
 .g-card {
   position:relative; border-radius:4px; overflow:hidden;
   cursor:pointer;
   border:1px solid var(--gold-dim);
-  -webkit-tap-highlight-color: transparent;
 }
 .g-card img.g-img {
   width:100%; height:100%; object-fit:cover; display:block;
   transition: transform .55s cubic-bezier(.22,.61,.36,1);
 }
-.g-card:hover img.g-img, 
-.g-card:active img.g-img { 
-  transform:scale(1.07); 
+@media (hover: hover) and (pointer: fine) {
+  .g-card:hover img.g-img { transform:scale(1.07); }
+  .g-card:hover .g-overlay { opacity:1; }
 }
 
-/* overlay with caption on hover */
 .g-card .g-overlay {
   position:absolute; inset:0;
   background:linear-gradient(180deg, transparent 40%, rgba(44,36,32,.62) 100%);
   display:flex; flex-direction:column; justify-content:flex-end;
   padding:22px 18px 18px;
   opacity:0; transition:opacity .35s;
-}
-.g-card:hover .g-overlay,
-.g-card:active .g-overlay { 
-  opacity:1; 
 }
 .g-overlay .g-caption {
   font-family:'Playfair Display',serif; font-style:italic;
@@ -423,7 +476,6 @@ section { padding: 80px 24px; }
   color:var(--gold-light); margin-top:3px; font-weight:300;
 }
 
-/* ── Grid placement (asymmetric editorial layout) ── */
 .g-card--1 { grid-column:1 / 5;  grid-row:1 / 4; }
 .g-card--2 { grid-column:5 / 9;  grid-row:1 / 3; }
 .g-card--3 { grid-column:9 / 13; grid-row:1 / 3; }
@@ -434,22 +486,19 @@ section { padding: 80px 24px; }
 .g-card--8 { grid-column:5 / 9;  grid-row:5 / 7; }
 .g-card--9 { grid-column:1 / 5;  grid-row:6 / 8; }
 
-/* ── Lightbox ── */
+/* Lightbox */
 .lightbox {
   display:none; position:fixed; inset:0; z-index:900;
   background:rgba(20,16,14,.92); 
-  backdrop-filter:blur(4px);
-  -webkit-backdrop-filter:blur(4px);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
   align-items:center; justify-content:center;
   flex-direction:column; gap:18px;
-  cursor:pointer;
-  padding: 20px;
 }
 .lightbox.open { display:flex; animation:lbFade .25s ease; }
 @keyframes lbFade { from{opacity:0} to{opacity:1} }
 .lightbox .lb-img {
-  max-width:90vw; 
-  max-height:70vh;
+  max-width:88vw; max-height:72vh;
   border-radius:4px; object-fit:contain;
   border:1px solid rgba(201,169,110,.25);
   display:block;
@@ -458,37 +507,37 @@ section { padding: 80px 24px; }
   text-align:center; color:#fff;
   padding: 0 20px;
 }
-.lightbox .lb-caption .g-caption { 
-  font-size: clamp(14px, 3vw, 18px);
-  font-family:'Playfair Display',serif;
-  line-height: 1.4;
-}
+.lightbox .lb-caption .g-caption { font-size:18px; }
 .lightbox .lb-caption .g-date { margin-top:4px; }
 .lightbox .lb-close {
   position:absolute; top:20px; right:20px;
-  font-size:36px; color:rgba(255,255,255,.6);
+  font-size:40px; color:rgba(255,255,255,.6);
   cursor:pointer; line-height:1; font-family:sans-serif;
   transition:color .2s;
-  -webkit-tap-highlight-color: transparent;
-  padding: 10px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.lightbox .lb-close:hover,
-.lightbox .lb-close:active { color:#fff; }
+.lightbox .lb-close:hover { color:#fff; }
 .lightbox .lb-nav {
   position:absolute; top:50%; transform:translateY(-50%);
-  font-size:40px; color:rgba(255,255,255,.5);
+  font-size:48px; color:rgba(255,255,255,.5);
   cursor:pointer; user-select:none; font-family:sans-serif;
   transition:color .2s; z-index:2;
-  -webkit-tap-highlight-color: transparent;
-  padding: 20px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.lightbox .lb-nav:hover,
-.lightbox .lb-nav:active { color:#fff; }
+.lightbox .lb-nav:hover { color:#fff; }
 .lightbox .lb-nav--prev { left:10px; }
 .lightbox .lb-nav--next { right:10px; }
 
 /* ════════════════════════════════════════
-   GIFT REGISTRY (SIMPLE)
+   GIFTS
    ════════════════════════════════════════ */
 #gifts { background:var(--cream); }
 
@@ -505,9 +554,7 @@ section { padding: 80px 24px; }
 .gifts-simple p em { color:var(--gold); font-style:italic; }
 
 .gift-qr {
-  margin:0 auto 24px; 
-  width: min(220px, 100%); 
-  height: min(220px, 100%);
+  margin:0 auto 24px; width:220px; height:220px;
   border:1px solid var(--gold-dim); border-radius:4px;
   background:linear-gradient(145deg,#f5f0eb,#ede8e2);
   display:flex; align-items:center; justify-content:center;
@@ -545,18 +592,16 @@ section { padding: 80px 24px; }
   width:100%; background:none; border:none; cursor:pointer;
   display:flex; justify-content:space-between; align-items:center;
   text-align:left;
-  -webkit-tap-highlight-color: transparent;
-  padding: 8px 0;
+  padding: 0;
 }
 .faq-item .faq-q {
-  font-family:'Playfair Display',serif; 
-  font-size: clamp(15px, 3vw, 17px);
+  font-family:'Playfair Display',serif; font-size:17px;
   color:var(--ink); font-weight:400;
-  line-height: 1.4;
+  flex: 1;
   padding-right: 20px;
 }
 .faq-item .faq-toggle {
-  font-size:22px; color:var(--gold); transition:transform .3s; line-height:1;
+  font-size:28px; color:var(--gold); transition:transform .3s; line-height:1;
   flex-shrink: 0;
 }
 .faq-item.open .faq-toggle { transform:rotate(45deg); }
@@ -583,8 +628,8 @@ section { padding: 80px 24px; }
 .rsvp-card {
   max-width:520px; margin:48px auto 0;
   background:rgba(255,255,255,.85); 
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
   border:1px solid var(--gold-dim); border-radius:4px;
   padding:52px 44px 46px; position:relative; z-index:2;
   box-shadow:0 4px 30px rgba(44,36,32,.07);
@@ -596,12 +641,11 @@ section { padding: 80px 24px; }
 }
 .rsvp-card .fg input,
 .rsvp-card .fg select {
-  width:100%; padding:12px 16px;
-  background:rgba(255,255,255,.8); border:1px solid rgba(201,169,110,.28);
-  border-radius:3px; font-family:'Playfair Display',serif;
+  width:100%; padding:14px 16px;
+  background:rgba(255,255,255,.7); border:1px solid rgba(201,169,110,.28);
+  border-radius:4px; font-family:'Playfair Display',serif;
   font-size:17px; color:var(--ink); outline:none;
   transition: border-color .25s, box-shadow .25s;
-  -webkit-appearance:none; appearance:none;
 }
 .rsvp-card .fg input:focus,
 .rsvp-card .fg select:focus {
@@ -609,7 +653,6 @@ section { padding: 80px 24px; }
 }
 .rsvp-card .fg input::placeholder { color:#b0a49a; }
 
-/* select arrow */
 .sel-wrap { position:relative; }
 .sel-wrap::after {
   content:''; position:absolute; right:16px; top:50%;
@@ -617,57 +660,69 @@ section { padding: 80px 24px; }
   background:var(--gold); clip-path:polygon(0 0,100% 0,50% 100%);
   pointer-events:none;
 }
-.sel-wrap select { padding-right:38px; cursor:pointer; }
+.sel-wrap select { 
+  padding-right:38px; 
+  cursor:pointer;
+  background-image: none;
+}
 .sel-wrap select option { background:#fff; }
 
-/* qty */
 .qty-row { 
-  display:flex; align-items:center; gap:0; 
+  display:flex; 
+  align-items:center; 
+  gap:0; 
   border:1px solid rgba(201,169,110,.28); 
-  border-radius:3px; overflow:hidden; 
+  border-radius:4px; 
+  overflow:hidden; 
   width:fit-content; 
 }
 .qty-row button {
-  background:rgba(255,255,255,.55); border:none; 
-  width:44px; height:44px;
-  font-size:22px; color:var(--gold); cursor:pointer;
-  font-family:'Playfair Display',serif; transition:background .2s;
-  -webkit-tap-highlight-color: transparent;
+  background:rgba(255,255,255,.55); 
+  border:none; 
+  width:50px; 
+  height:50px;
+  font-size:24px; 
+  color:var(--gold); 
+  cursor:pointer;
+  font-family:'Playfair Display',serif; 
+  transition:background .2s;
 }
-.qty-row button:active { background:rgba(201,169,110,.25); }
+.qty-row button:hover { background:rgba(201,169,110,.12); }
 .qty-row .qty-v {
-  width:50px; height:44px; display:flex; align-items:center; justify-content:center;
-  font-family:'Playfair Display',serif; font-size:19px; color:var(--ink);
+  width:50px; 
+  height:50px; 
+  display:flex; 
+  align-items:center; 
+  justify-content:center;
+  font-family:'Playfair Display',serif; 
+  font-size:20px; 
+  color:var(--ink);
   background:rgba(255,255,255,.4);
 }
 
-/* meal pills */
 .meal-pills { display:flex; gap:10px; flex-wrap:wrap; }
 .meal-pill input[type="radio"] { display:none; }
 .meal-pill label {
-  display:block; padding:10px 20px; border:1px solid rgba(201,169,110,.25);
+  display:block; padding:12px 20px; border:1px solid rgba(201,169,110,.25);
   border-radius:24px; font-family:'Playfair Display',serif;
   font-size:14px; color:var(--ink-soft); cursor:pointer;
   transition:all .25s; background:rgba(255,255,255,.5);
-  -webkit-tap-highlight-color: transparent;
 }
 .meal-pill input:checked + label {
   background:var(--gold); color:#fff; border-color:var(--gold);
 }
-.meal-pill label:active { 
-  transform: scale(0.98);
+@media (hover: hover) and (pointer: fine) {
+  .meal-pill label:hover { border-color:var(--gold-light); }
 }
 
-/* submit btn */
 .rsvp-btn {
-  display:block; width:100%; margin-top:30px; padding:15px;
+  display:block; width:100%; margin-top:30px; padding:16px;
   background:linear-gradient(135deg, var(--gold), #b8955a);
-  border:none; border-radius:3px; color:#fff;
+  border:none; border-radius:4px; color:#fff;
   font-family:'Raleway',sans-serif; font-weight:300;
   font-size:11px; letter-spacing:4.5px; text-transform:uppercase;
   cursor:pointer; position:relative; overflow:hidden;
   transition:opacity .25s, transform .15s;
-  -webkit-tap-highlight-color: transparent;
 }
 .rsvp-btn::after {
   content:''; position:absolute; top:-50%; left:-75%;
@@ -675,11 +730,12 @@ section { padding: 80px 24px; }
   background:linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent);
   transform:skewX(-25deg); transition:left .55s;
 }
-.rsvp-btn:hover::after,
-.rsvp-btn:active::after { left:125%; }
+@media (hover: hover) and (pointer: fine) {
+  .rsvp-btn:hover::after { left:125%; }
+  .rsvp-btn:hover { opacity:.88; }
+}
 .rsvp-btn:active { transform:scale(.98); }
 
-/* confirmation */
 .rsvp-confirm { display:none; text-align:center; }
 .rsvp-confirm.show { display:block; animation:fadeIn .5s ease; }
 @keyframes fadeIn { from{opacity:0} to{opacity:1} }
@@ -696,14 +752,9 @@ section { padding: 80px 24px; }
 }
 @keyframes draw { to { stroke-dashoffset:0; } }
 .rsvp-confirm h3 {
-  font-family:'Playfair Display',serif; 
-  font-size: clamp(24px, 5vw, 28px); 
-  color:var(--ink); margin-bottom:10px;
+  font-family:'Playfair Display',serif; font-size:28px; color:var(--ink); margin-bottom:10px;
 }
-.rsvp-confirm > p { 
-  font-size:16px; color:var(--ink-soft); line-height:1.7; 
-  max-width:340px; margin:0 auto; 
-}
+.rsvp-confirm > p { font-size:16px; color:var(--ink-soft); line-height:1.7; max-width:340px; margin:0 auto; }
 .confirm-summary {
   margin-top:22px; padding:18px 24px; border:1px solid var(--gold-dim);
   border-radius:3px; background:rgba(201,169,110,.06); text-align:left;
@@ -715,7 +766,6 @@ section { padding: 80px 24px; }
   font-family:'Raleway',sans-serif; font-size:10px; letter-spacing:2.5px;
   text-transform:uppercase; color:var(--gold); cursor:pointer;
   border-bottom:1px solid rgba(201,169,110,.4); padding:4px 0;
-  -webkit-tap-highlight-color: transparent;
 }
 
 /* ════════════════════════════════════════
@@ -726,46 +776,17 @@ footer {
   text-align:center; padding:48px 24px;
 }
 footer .foot-names {
-  font-family:'Playfair Display',serif; 
-  font-size: clamp(18px, 4vw, 22px);
+  font-family:'Playfair Display',serif; font-size:22px;
   color:rgba(255,255,255,.8); margin-bottom:10px;
 }
 footer .foot-names em { color:var(--gold); font-style:italic; }
-footer p { 
-  font-size: clamp(12px, 2.5vw, 13px); 
-  font-weight:300; line-height:1.8; 
-}
+footer p { font-size:13px; font-weight:300; line-height:1.8; }
 footer .foot-ornament {
   width:36px; height:1px; background:var(--gold); margin:14px auto;
 }
 footer a {
   color:var(--gold);
   text-decoration:none;
-  word-wrap: break-word;
-}
-
-/* ════════════════════════════════════════
-   MOBILE NAV OVERLAY
-   ════════════════════════════════════════ */
-.nav-overlay {
-  display:none; position:fixed; inset:0; z-index:99;
-  background:rgba(250,247,244,.98); 
-  flex-direction:column;
-  align-items:center; justify-content:center; gap:28px;
-}
-.nav-overlay.open { display:flex; }
-.nav-overlay a {
-  font-size:13px; letter-spacing:3px; text-transform:uppercase;
-  color:var(--ink); text-decoration:none; font-weight:300;
-  -webkit-tap-highlight-color: transparent;
-  padding: 10px 20px;
-}
-.nav-overlay .close-btn {
-  position:absolute; top:22px; right:26px;
-  font-size:32px; color:var(--ink-soft); cursor:pointer; 
-  background:none; border:none;
-  -webkit-tap-highlight-color: transparent;
-  padding: 10px;
 }
 
 /* ════════════════════════════════════════
@@ -783,7 +804,6 @@ footer a {
   opacity:0; visibility:hidden; pointer-events:none;
 }
 
-/* floating particles */
 .env-particle {
   position:absolute; border-radius:50%;
   background:var(--gold); opacity:0;
@@ -801,14 +821,12 @@ footer a {
   50%     { transform:translateY(-18px) scale(1.15); opacity:.4; }
 }
 
-/* ── Envelope wrapper ── */
 .env-wrap {
   position:relative; 
-  width: min(320px, 85vw); 
-  height: min(220px, 58vw);
+  width:min(320px, 90vw); 
+  height:min(220px, 60vw);
   cursor:pointer;
   perspective:1200px;
-  -webkit-tap-highlight-color: transparent;
 }
 .env-body {
   position:absolute; inset:0;
@@ -844,9 +862,7 @@ footer a {
   box-shadow: inset 0 -2px 4px rgba(44,36,32,.06);
 }
 .env-seal {
-  position:absolute; 
-  width: min(42px, 12vw); 
-  height: min(42px, 12vw);
+  position:absolute; width:42px; height:42px;
   border-radius:50%;
   background: radial-gradient(circle, #dcc9a0 0%, var(--gold) 60%, #b8955a 100%);
   border:2px solid rgba(255,255,255,.45);
@@ -861,7 +877,6 @@ footer a {
   transform:translateX(-50%) scale(0.7);
   opacity:0;
 }
-
 .env-wrap.open .env-flap {
   transform: rotateX(-180deg);
 }
@@ -887,13 +902,12 @@ footer a {
   opacity:1;
 }
 .env-card .ec-pre {
-  font-size: clamp(8px, 2vw, 9px); 
-  letter-spacing:3.5px; text-transform:uppercase;
+  font-size:9px; letter-spacing:3.5px; text-transform:uppercase;
   color:var(--ink-soft); font-weight:300; margin-bottom:6px;
 }
 .env-card .ec-names {
   font-family:'Playfair Display',serif; 
-  font-size: clamp(14px, 4vw, 18px);
+  font-size:clamp(14px, 4vw, 18px);
   color:var(--ink); line-height:1.2;
 }
 .env-card .ec-names em { color:var(--gold); font-style:italic; }
@@ -901,8 +915,7 @@ footer a {
   width:28px; height:1px; background:var(--gold); margin:6px auto;
 }
 .env-card .ec-date {
-  font-size: clamp(8px, 2vw, 10px); 
-  letter-spacing:2px; text-transform:uppercase;
+  font-size:10px; letter-spacing:2px; text-transform:uppercase;
   color:var(--ink-soft); font-weight:300;
 }
 
@@ -955,15 +968,14 @@ footer a {
 
 .env-enter-btn {
   margin-top:36px;
-  padding:12px 36px;
+  padding:14px 40px;
   background: linear-gradient(135deg, var(--gold), #b8955a);
-  border:none; border-radius:3px; color:#fff;
+  border:none; border-radius:4px; color:#fff;
   font-family:'Raleway',sans-serif; font-weight:300;
   font-size:11px; letter-spacing:4px; text-transform:uppercase;
   cursor:pointer; opacity:0; transform:translateY(10px);
   transition: opacity .4s .9s, transform .4s .9s;
   position:relative; overflow:hidden;
-  -webkit-tap-highlight-color: transparent;
 }
 .env-enter-btn::after {
   content:''; position:absolute; top:-50%; left:-75%;
@@ -971,8 +983,9 @@ footer a {
   background:linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent);
   transform:skewX(-25deg); transition:left .55s;
 }
-.env-enter-btn:hover::after,
-.env-enter-btn:active::after { left:125%; }
+@media (hover: hover) and (pointer: fine) {
+  .env-enter-btn:hover::after { left:125%; }
+}
 .env-wrap.open ~ .env-enter-btn {
   opacity:1; transform:translateY(0);
 }
@@ -984,187 +997,110 @@ footer a {
 /* ════════════════════════════════════════
    RESPONSIVE BREAKPOINTS
    ════════════════════════════════════════ */
-
-/* Tablet */
-@media (max-width:820px) {
-  section { padding: 70px 20px; }
+@media (max-width:720px) {
+  nav { padding: 14px 20px; }
+  nav.scrolled { padding: 8px 20px; }
   
-  .story-grid { 
-    grid-template-columns:1fr; 
-    gap:40px; 
-  }
+  .story-grid { grid-template-columns:1fr; gap:32px; }
   
-  .venue-block { 
-    grid-template-columns:1fr; 
-    gap:24px;
-  }
+  .venue-block { grid-template-columns:1fr; }
   .venue-block:nth-child(even) { direction:ltr; }
   
   .timeline::before { left:28px; }
-  .timeline-item, 
-  .timeline-item:nth-child(odd) { flex-direction:row; }
-  .timeline-item:nth-child(odd) .tl-content { 
-    text-align:left; 
-    padding:0 0 0 36px; 
-  }
+  .timeline-item, .timeline-item:nth-child(odd) { flex-direction:row; }
+  .timeline-item:nth-child(odd) .tl-content { text-align:left; padding:0 0 0 36px; }
   .tl-dot { left:28px; }
-  
-  nav { padding: 14px 24px; }
-  nav.scrolled { padding: 10px 24px; }
-}
-
-/* Mobile */
-@media (max-width:720px) {
-  .hero {
-    min-height:450px;
-    padding: 20px 16px;
-  }
-  
-  .hero__content p {
-    font-size: 12px;
-    line-height: 1.7;
-  }
-  
-  .hero__pre {
-    font-size: 9px;
-    letter-spacing: 3px;
-  }
-  
-  section { padding: 60px 18px; }
-  
-  .rsvp-card { 
-    padding:36px 24px 30px; 
-  }
-  
-  .gifts-simple {
-    padding: 32px 24px;
-  }
-  
-  .nav-links { display:none; }
-  .nav-toggle { display:flex; }
   
   .gallery-grid {
     grid-template-columns:1fr 1fr;
     grid-auto-rows:140px;
-    gap:10px;
+    gap: 10px;
   }
-  
   .g-card--1,.g-card--2,.g-card--3,.g-card--4,.g-card--5,
   .g-card--6,.g-card--7,.g-card--8,.g-card--9 {
     grid-column:auto; grid-row:auto;
   }
-  .g-card--1,.g-card--3,.g-card--6,.g-card--9 { 
-    grid-column:span 1; 
-    grid-row:span 2; 
-  }
-  .g-card--2,.g-card--7,.g-card--8 { 
-    grid-column:span 2; 
-  }
+  .g-card--1,.g-card--3,.g-card--6,.g-card--9 { grid-column:span 1; grid-row:span 2; }
+  .g-card--2,.g-card--7,.g-card--8 { grid-column:span 2; }
   
-  .g-overlay .g-caption {
-    font-size: 13px;
-  }
+  .rsvp-card { padding:40px 26px 34px; }
   
-  .lightbox .lb-nav--prev { left:5px; }
-  .lightbox .lb-nav--next { right:5px; }
-  .lightbox .lb-close { top:15px; right:15px; font-size:30px; }
+  .nav-links { display:none; }
+  .nav-toggle { display:flex; }
   
-  .meal-pills {
-    flex-direction: column;
-  }
+  .lightbox .lb-nav { font-size:36px; }
+  .lightbox .lb-close { font-size:32px; }
   
-  .meal-pill label {
-    width: 100%;
-    text-align: center;
-  }
+  section { padding: 80px 20px; }
+  
+  .gifts-simple { padding: 32px 24px; }
 }
 
-/* Small Mobile */
 @media (max-width:420px) {
-  .hero {
-    min-height:400px;
-  }
-  
-  section { padding:50px 16px; }
-  
-  .rsvp-card { 
-    padding:28px 20px 24px; 
-  }
+  section { padding:60px 16px; }
+  .rsvp-card { padding:28px 18px 24px; }
+  .gifts-simple { padding: 28px 20px; }
   
   .gallery-grid { 
-    grid-auto-rows:110px; 
+    grid-auto-rows:120px; 
     gap:8px; 
   }
   
-  .story-text p {
-    font-size: 15px;
+  .hero__content { padding: 0 16px; }
+  .hero__date { font-size: 9px; letter-spacing: 2px; }
+  
+  .meal-pills { gap: 8px; }
+  .meal-pill label { 
+    padding: 10px 16px; 
+    font-size: 13px; 
   }
   
-  .tl-label {
-    font-size: 17px;
+  .qty-row button,
+  .qty-row .qty-v {
+    width: 44px;
+    height: 44px;
   }
   
-  .tl-desc {
-    font-size: 13px;
-  }
-  
-  footer {
-    padding: 36px 20px;
-  }
-  
-  .env-wrap {
-    width: min(280px, 90vw);
-    height: min(190px, 62vw);
-  }
-  
-  .env-seal {
-    width: min(38px, 14vw);
-    height: min(38px, 14vw);
-  }
-  
-  .env-seal svg {
-    width: 14px;
-    height: 14px;
-  }
-}
-
-/* Landscape mobile fix */
-@media (max-height: 500px) and (orientation: landscape) {
-  .hero {
-    min-height: 100vh;
-    height: auto;
-  }
-  
-  .hero__scroll-hint {
-    bottom: 20px;
-  }
-  
-  #envelope-screen {
-    overflow-y: auto;
+  .lightbox .lb-img {
+    max-width: 95vw;
+    max-height: 70vh;
   }
   
   .env-wrap {
-    margin: 20px 0;
+    width: min(280px, 85vw);
+    height: min(190px, 55vw);
   }
 }
 
-/* iOS specific fixes */
-@supports (-webkit-touch-callout: none) {
-  .hero {
-    /* Fix for iOS Safari viewport height */
-    min-height: -webkit-fill-available;
-  }
-  
-  input, select, textarea {
-    font-size: 16px !important; /* Prevents zoom on focus in iOS */
-  }
+/* Mobile nav overlay */
+.nav-overlay {
+  display:none; position:fixed; inset:0; z-index:99;
+  background:rgba(250,247,244,.98); 
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  flex-direction:column;
+  align-items:center; justify-content:center; gap:28px;
+}
+.nav-overlay.open { display:flex; }
+.nav-overlay a {
+  font-size:13px; letter-spacing:3px; text-transform:uppercase;
+  color:var(--ink); text-decoration:none; font-weight:300;
+}
+.nav-overlay .close-btn {
+  position:absolute; top:22px; right:26px;
+  font-size:36px; color:var(--ink-soft); cursor:pointer; background:none; border:none;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Prevent text size adjustment on orientation change */
-@media (orientation: landscape) {
-  html {
-    -webkit-text-size-adjust: 100%;
-  }
+/* Prevent body scroll when modals are open */
+body.modal-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
 }
 </style>
 </head>
@@ -1189,15 +1125,18 @@ footer a {
     <div class="env-flap-bottom"></div>
     <div class="env-flap-left"></div>
     <div class="env-flap-right"></div>
+
     <div class="env-card">
       <p class="ec-pre">You are invited</p>
       <p class="ec-names">Christopher <em>&</em> Regine</p>
       <div class="ec-line"></div>
       <p class="ec-date">21 · 04 · 2026</p>
     </div>
+
     <div class="env-flap">
       <div class="env-flap-face"></div>
     </div>
+
     <div class="env-seal">
       <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
@@ -1229,20 +1168,20 @@ footer a {
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#rsvp">RSVP</a></li>
   </ul>
-  <div class="nav-toggle" onclick="document.getElementById('mobileNav').classList.add('open')">
+  <button class="nav-toggle" onclick="openMobileNav()" aria-label="Open menu">
     <span></span><span></span><span></span>
-  </div>
+  </button>
 </nav>
 
 <div class="nav-overlay" id="mobileNav">
-  <button class="close-btn" onclick="document.getElementById('mobileNav').classList.remove('open')">×</button>
-  <a href="#story"    onclick="document.getElementById('mobileNav').classList.remove('open')">Our Story</a>
-  <a href="#timeline" onclick="document.getElementById('mobileNav').classList.remove('open')">The Day</a>
-  <a href="#venue"    onclick="document.getElementById('mobileNav').classList.remove('open')">Venue</a>
-  <a href="#gallery"  onclick="document.getElementById('mobileNav').classList.remove('open')">Gallery</a>
-  <a href="#gifts"    onclick="document.getElementById('mobileNav').classList.remove('open')">Gifts</a>
-  <a href="#faq"      onclick="document.getElementById('mobileNav').classList.remove('open')">FAQ</a>
-  <a href="#rsvp"     onclick="document.getElementById('mobileNav').classList.remove('open')">RSVP</a>
+  <button class="close-btn" onclick="closeMobileNav()" aria-label="Close menu">×</button>
+  <a href="#story" onclick="closeMobileNav()">Our Story</a>
+  <a href="#timeline" onclick="closeMobileNav()">The Day</a>
+  <a href="#venue" onclick="closeMobileNav()">Venue</a>
+  <a href="#gallery" onclick="closeMobileNav()">Gallery</a>
+  <a href="#gifts" onclick="closeMobileNav()">Gifts</a>
+  <a href="#faq" onclick="closeMobileNav()">FAQ</a>
+  <a href="#rsvp" onclick="closeMobileNav()">RSVP</a>
 </div>
 
 <section class="hero" id="home">
@@ -1254,7 +1193,7 @@ footer a {
     <h1 class="hero__names">Christopher <span class="amp">&</span> Regine</h1>
     <p class="hero__date">Tuesday · The Twenty First of April · Two Thousand Twenty Six</p>
     <div class="hero__divider"></div>
-    <p style="font-size:clamp(11px, 2.5vw, 13px);color:var(--ink-soft);font-weight:300;letter-spacing:1px;line-height:1.6;">request the honour of your presence<br/>at their wedding celebration</p>
+    <p style="font-size:13px;color:var(--ink-soft);font-weight:300;letter-spacing:1px;">request the honour of your presence<br/>at their wedding celebration</p>
   </div>
   <div class="hero__scroll-hint">
     <span>Scroll</span>
@@ -1271,7 +1210,7 @@ footer a {
     <div class="story-grid">
       <div class="story-img-wrap reveal">
         <div class="story-img-box">
-          <img src="assets/Our Story.jpg" alt="Christopher and Regine — Summer 2022" />
+          <img src="assets/Our Story.jpg" alt="Christopher and Regine — Summer 2022" loading="lazy" />
           <span class="img-label">Summer 2022</span>
         </div>
       </div>
@@ -1293,7 +1232,7 @@ footer a {
     <div class="timeline">
       <div class="timeline-item reveal">
         <div class="tl-content">
-          <p class="tl-time">4:00 PM</p>
+          <p class="tl-time">2:00 PM</p>
           <p class="tl-label">Ceremony</p>
           <p class="tl-desc">An intimate ceremony at the Kingdom Hall of Jehovah's Witnesses.</p>
         </div>
@@ -1301,7 +1240,7 @@ footer a {
       </div>
       <div class="timeline-item reveal">
         <div class="tl-content">
-          <p class="tl-time">5:00 PM</p>
+          <p class="tl-time">4:00 PM</p>
           <p class="tl-label">Move to Reception</p>
           <p class="tl-desc">Shuttle transfer to Caza Iyang Resort Hotel — drinks and refreshments await.</p>
         </div>
@@ -1334,7 +1273,6 @@ footer a {
     <div class="ornament reveal"><span class="ornament__line"></span><span class="ornament__dot"></span><span class="ornament__line"></span></div>
 
     <div class="venue-block-wrap">
-
       <div class="venue-block reveal">
         <div class="vb-image-wrap">
           <span class="vb-badge">⛪ Ceremony</span>
@@ -1347,10 +1285,10 @@ footer a {
             <div class="vb-addr-icon">📍</div>
             <p><strong>Kingdom Hall of Jehovah's Witnesses</strong><br/>Poblacion <br/>Concepcion, Iloilo 5013, Philippines</p>
           </div>
-          <div class="vb-map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3913.6527490352096!2d123.1107386784599!3d11.21330777558937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a8b3004fe9bbbd%3A0x799b8c853040377f!2sKINGDOM%20HALL%20OF%20JEHOVAH&#39;S%20WITNESSES!5e0!3m2!1sen!2sph!4v1770092395272!5m2!1sen!2sph" 
-            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="vb-map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3913.6527490352096!2d123.1107386784599!3d11.21330777558937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a8b3004fe9bbbd%3A0x799b8c853040377f!2sKINGDOM%20HALL%20OF%20JEHOVAH&#39;S%20WITNESSES!5e0!3m2!1sen!2sph!4v1770092395272!5m2!1sen!2sph" 
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
         </div>
       </div>
@@ -1374,7 +1312,6 @@ footer a {
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -1388,63 +1325,63 @@ footer a {
 
     <div class="gallery-grid">
       <div class="g-card g-card--1 reveal" onclick="openLightbox(0)">
-        <img class="g-img" src="moments/photo-1.jpg" alt="The bookshop where it all started" />
+        <img class="g-img" src="moments/photo-1.jpg" alt="The bookshop where it all started" loading="lazy" />
         <div class="g-overlay">
           <span class="g-caption">The bookshop where it all started</span>
           <span class="g-date">July 2022</span>
         </div>
       </div>
       <div class="g-card g-card--2 reveal" onclick="openLightbox(1)">
-        <img class="g-img" src="moments/photo-2.jpg" alt="Sunset walk along the coast" />
+        <img class="g-img" src="moments/photo-2.jpg" alt="Sunset walk along the coast" loading="lazy" />
         <div class="g-overlay">
           <span class="g-caption">Sunset walk along the coast</span>
           <span class="g-date">September 2022</span>
         </div>
       </div>
       <div class="g-card g-card--3 reveal" onclick="openLightbox(2)">
-        <img class="g-img" src="moments/photo-3.jpg" alt="Our first Christmas together" />
+        <img class="g-img" src="moments/photo-3.jpg" alt="Our first Christmas together" loading="lazy" />
         <div class="g-overlay">
           <span class="g-caption">Our first Christmas together</span>
           <span class="g-date">December 2022</span>
         </div>
       </div>
       <div class="g-card g-card--4 reveal" onclick="openLightbox(3)">
-        <img class="g-img" src="moments/photo-4.jpg" alt="Morning coffee rituals" />
+        <img class="g-img" src="moments/photo-4.jpg" alt="Morning coffee rituals" loading="lazy" />
         <div class="g-overlay">
           <span class="g-caption">Morning coffee rituals</span>
           <span class="g-date">March 2023</span>
         </div>
       </div>
       <div class="g-card g-card--5 reveal" onclick="openLightbox(4)">
-        <img class="g-img" src="moments/photo-5.jpg" alt="Road trip to Big Sur" />
+        <img class="g-img" src="moments/photo-5.jpg" alt="Road trip to Big Sur" loading="lazy" />
         <div class="g-overlay">
           <span class="g-caption">Road trip to Big Sur</span>
           <span class="g-date">May 2023</span>
         </div>
       </div>
       <div class="g-card g-card--6 reveal" onclick="openLightbox(5)">
-        <img class="g-img" src="moments/photo-6.jpg" alt="Dancing in the kitchen" />
+        <img class="g-img" src="moments/photo-6.jpg" alt="Dancing in the kitchen" loading="lazy" />
         <div class="g-overlay">
           <span class="g-caption">Dancing in the kitchen</span>
           <span class="g-date">August 2023</span>
         </div>
       </div>
       <div class="g-card g-card--7 reveal" onclick="openLightbox(6)">
-        <img class="g-img" src="moments/photo-7.jpg" alt="The vineyard picnic" />
+        <img class="g-img" src="moments/photo-7.jpg" alt="The vineyard picnic" loading="lazy" />
         <div class="g-overlay">
           <span class="g-caption">The vineyard picnic</span>
           <span class="g-date">October 2023</span>
         </div>
       </div>
       <div class="g-card g-card--8 reveal" onclick="openLightbox(7)">
-        <img class="g-img" src="moments/photo-8.jpg" alt="New Year's Eve, midnight kiss" />
+        <img class="g-img" src="moments/photo-8.jpg" alt="New Year's Eve, midnight kiss" loading="lazy" />
         <div class="g-overlay">
           <span class="g-caption">New Year's Eve, midnight kiss</span>
           <span class="g-date">December 2023</span>
         </div>
       </div>
       <div class="g-card g-card--9 reveal" onclick="openLightbox(8)">
-        <img class="g-img" src="moments/photo-9.jpg" alt="The proposal" />
+        <img class="g-img" src="moments/photo-9.jpg" alt="The proposal" loading="lazy" />
         <div class="g-overlay">
           <span class="g-caption">The proposal — he said yes first!</span>
           <span class="g-date">February 2024</span>
@@ -1455,10 +1392,10 @@ footer a {
 </section>
 
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <span class="lb-close">&times;</span>
+  <span class="lb-close" onclick="closeLightbox()">&times;</span>
   <span class="lb-nav lb-nav--prev" onclick="event.stopPropagation();lbNav(-1)">&#8249;</span>
   <span class="lb-nav lb-nav--next" onclick="event.stopPropagation();lbNav(1)">&#8250;</span>
-  <img class="lb-img" id="lbImg" src="" alt="Captured moment" /><br/>
+  <img class="lb-img" id="lbImg" src="" alt="Captured moment" />
   <div class="lb-caption">
     <span class="g-caption" id="lbCaption"></span><br/>
     <span class="g-date" id="lbDate"></span>
@@ -1475,7 +1412,7 @@ footer a {
       <p>Your presence at our wedding is the greatest gift we could ask for. However, if you wish to honor us with a gift, a <em>monetary contribution</em> toward our future together would be deeply appreciated.</p>
       
       <div class="gift-qr">
-        <img src="assets/gcash-qr.jpg" alt="GCash QR Code" />
+        <img src="assets/gcash-qr.jpg  " alt="GCash QR Code" />
       </div>
 
       <p style="margin-bottom:0;"><strong style="color:var(--ink);">Scan to send via GCash</strong></p>
@@ -1597,7 +1534,7 @@ footer a {
   <p class="foot-names">Christopher <em>&</em> Regine</p>
   <div class="foot-ornament"></div>
   <p>21 April 2026 · Kingdom Hall & Caza Iyang Resort Hotel · Iloilo</p>
-  <p style="margin-top:10px;font-size:clamp(11px, 2.5vw, 12px);">Questions? Email us at <a href="mailto:christopher.regine@wedding.com">christopher.regine@wedding.com</a></p>
+  <p style="margin-top:10px;font-size:12px;">Questions? Email us at <a href="mailto:hello@christopherandregine.com">hello@christopherandregine.com</a></p>
 </footer>
 
 </div>
@@ -1607,26 +1544,52 @@ footer a {
 function openEnvelope() {
   document.getElementById('envWrap').classList.add('open');
 }
+
 function enterSite() {
   document.getElementById('envelope-screen').classList.add('hide');
   document.getElementById('site-content').classList.add('show');
+  document.body.classList.remove('modal-open');
 }
 
 // Nav scroll effect
+let lastScrollTop = 0;
 window.addEventListener('scroll', () => {
-  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60);
-});
+  const nav = document.getElementById('mainNav');
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  
+  if (scrollTop > 60) {
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+  
+  lastScrollTop = scrollTop;
+}, { passive: true });
+
+// Mobile nav
+function openMobileNav() {
+  document.getElementById('mobileNav').classList.add('open');
+  document.body.classList.add('modal-open');
+}
+
+function closeMobileNav() {
+  document.getElementById('mobileNav').classList.remove('open');
+  document.body.classList.remove('modal-open');
+}
 
 // Reveal on scroll
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((e, i) => {
     if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      setTimeout(() => {
+        e.target.classList.add('visible');
+      }, i * 80);
       observer.unobserve(e.target);
     }
   });
-}, { threshold: 0.15 });
+}, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
 reveals.forEach(el => observer.observe(el));
 
 // FAQ toggle
@@ -1639,20 +1602,24 @@ function toggleFaq(btn) {
 
 // RSVP logic
 let qty = 1;
+
 function handleAttend() {
   const yes = document.getElementById('rAttend').value === 'yes';
   ['guestQtyFg','mealFg','dietFg'].forEach(id => {
     document.getElementById(id).style.display = yes ? 'block' : 'none';
   });
 }
+
 function chgQty(d) {
   qty = Math.max(1, Math.min(8, qty + d));
   document.getElementById('qtyV').textContent = qty;
 }
+
 function submitRSVP() {
   const name  = document.getElementById('rName').value.trim();
   const email = document.getElementById('rEmail').value.trim();
   const att   = document.getElementById('rAttend').value;
+  
   if (!name)  { alert('Please enter your name.'); return; }
   if (!email || !email.includes('@')) { alert('Please enter a valid email.'); return; }
   if (!att)   { alert('Please choose whether you are attending.'); return; }
@@ -1674,20 +1641,23 @@ function submitRSVP() {
   }
   document.getElementById('cSummary').innerHTML = html;
 
-  document.getElementById('rsvpForm').style.display    = 'none';
+  document.getElementById('rsvpForm').style.display = 'none';
   document.getElementById('rsvpConfirm').classList.add('show');
 }
+
 function resetRSVP() {
-  document.getElementById('rName').value  = '';
+  document.getElementById('rName').value = '';
   document.getElementById('rEmail').value = '';
   document.getElementById('rAttend').value = '';
-  document.getElementById('rDiet').value  = '';
+  document.getElementById('rDiet').value = '';
   document.querySelectorAll('input[name="meal"]').forEach(r => r.checked = false);
-  qty = 1; document.getElementById('qtyV').textContent = '1';
+  qty = 1; 
+  document.getElementById('qtyV').textContent = '1';
   ['guestQtyFg','mealFg','dietFg'].forEach(id => document.getElementById(id).style.display = 'none');
   document.getElementById('rsvpConfirm').classList.remove('show');
   document.getElementById('rsvpForm').style.display = 'block';
 }
+
 function esc(s) {
   const d = document.createElement('div');
   d.appendChild(document.createTextNode(s));
@@ -1706,6 +1676,7 @@ const galleryData = [
   { caption:"New Year's Eve, midnight kiss",      date:"December 2023" },
   { caption:"The proposal — he said yes first!",  date:"February 2024" }
 ];
+
 const lbSrcs = [
   'moments/photo-1.jpg',
   'moments/photo-2.jpg',
@@ -1717,41 +1688,46 @@ const lbSrcs = [
   'moments/photo-8.jpg',
   'moments/photo-9.jpg'
 ];
+
 let lbIdx = 0;
+
 function openLightbox(i) {
   lbIdx = i;
   const lb = document.getElementById('lightbox');
   document.getElementById('lbImg').src = lbSrcs[i];
   document.getElementById('lbCaption').textContent = galleryData[i].caption;
-  document.getElementById('lbDate').textContent    = galleryData[i].date;
+  document.getElementById('lbDate').textContent = galleryData[i].date;
   lb.classList.add('open');
-  document.body.style.overflow = 'hidden';
+  document.body.classList.add('modal-open');
 }
+
 function closeLightbox() {
   document.getElementById('lightbox').classList.remove('open');
-  document.body.style.overflow = '';
+  document.body.classList.remove('modal-open');
 }
+
 function lbNav(dir) {
   lbIdx = (lbIdx + dir + galleryData.length) % galleryData.length;
-  document.getElementById('lbImg').src            = lbSrcs[lbIdx];
+  document.getElementById('lbImg').src = lbSrcs[lbIdx];
   document.getElementById('lbCaption').textContent = galleryData[lbIdx].caption;
-  document.getElementById('lbDate').textContent    = galleryData[lbIdx].date;
+  document.getElementById('lbDate').textContent = galleryData[lbIdx].date;
 }
+
+// Keyboard navigation for lightbox
 document.addEventListener('keydown', e => {
   if (!document.getElementById('lightbox').classList.contains('open')) return;
-  if (e.key === 'Escape')     closeLightbox();
-  if (e.key === 'ArrowLeft')  lbNav(-1);
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') lbNav(-1);
   if (e.key === 'ArrowRight') lbNav(1);
 });
 
-// Prevent body scroll when mobile nav is open
-document.getElementById('mobileNav').addEventListener('transitionend', function(e) {
-  if (this.classList.contains('open')) {
-    document.body.style.overflow = 'hidden';
-  } else {
-    document.body.style.overflow = '';
-  }
-});
+// Prevent scroll on envelope screen
+document.getElementById('envelope-screen').addEventListener('touchmove', function(e) {
+  e.preventDefault();
+}, { passive: false });
+
+// Initialize - prevent body scroll initially
+document.body.classList.add('modal-open');
 </script>
 </body>
 </html>
